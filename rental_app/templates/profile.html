@@ -1,0 +1,436 @@
+{% include 'header.html' %}
+{% load static %}
+<body >
+
+    <script>
+        document.getElementById("Profile_logo_home").style="display:none;"
+
+    
+        
+    </script>
+
+    <style>
+        @media only screen and (max-width:600px){
+            #messenger_img {
+            margin-top: 55%;
+            height: 40%;
+            margin-left: 10%;
+           }
+           #homepage_sell_btn {
+   
+        margin: 2% 0% 0% 0%;
+           }
+        }
+    </style>
+
+    
+    <script>
+    
+    width_style_change=window.innerWidth
+    console.log(width_style_change)
+    if (width_style_change > 1000){
+        console.log("true_Width")
+    document.getElementById("messenger_img").style="    margin-top: 30%;   height: 40%; margin-left: 40%;"
+    }
+    </script>   
+
+
+
+    <div class="profile_main_div">
+    
+        <div id="left_profile_div">
+            <div id="left_profile_img_div">
+                {% for x in user_data %}
+                <a id="a_img-profile"><img id="profile_image_tag" src="/static/{% if x.6 == ''  %}upload_profile_pic.jpeg{% else %}{{x.6}}{% endif %}" alt='...Click to Upload' ></a>
+                    
+               <h4 id="welcome_invite">Welcome {{x.1}}</h4>
+               {% endfor %}
+            </div>
+
+        
+            <div id="profile_editable_div">
+                {% for x in user_data %}
+   
+                <div class="profile_inner_elements">
+                    <button id="edit-profile-btn"> &#128221; edit profile</button>
+                </div> 
+                <div class="profile_inner_elements">
+                    <a href="/help_support"><button id="help_support_btn">&#128587; Help</button></a>
+                </div>
+                <br><br>
+                <div class="profile_inner_elements">
+                    <form action="/" method="post"> <img src="/static/log-off.png" style="height: 18px; width: 20px; padding-bottom: 2px;" alt="">{% csrf_token %}<button id="logout-profile-btn" type="submit" value="Log_outing" name="logout">logout</button></form>
+                </div>
+                {% endfor %}
+            
+            </div>
+
+
+
+        </div>
+
+
+        <!-- profile_update_popup_intergration -->
+
+        <div class="right_profile_div">
+
+            <div class="edit-profile-form_div">
+                    <div class="form-element-profile-edit">
+                        <h3 style="color: grey;">Your personal profile info</h3>
+                    </div>
+                    <br>
+                    <br>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {% for x in user_data %}
+                    <div>
+                        <div >
+                            <h3>PROFILE</h3>
+                        </div>
+                        <input type="text" name="profile_updating" value="True" hidden >
+                        <div class="form-element-profile-edit">
+                            <label for="edit_first_n">First Name</label>
+                            <input type="text" onkeyup="{validate_creds(id,type)}" id='edit_first_n'name="first_name" value="{{x.1}}"  >
+
+                        </div>
+                        <div class="form-element-profile-edit">
+                            <label for="edit_last_n">Last Name</label>
+                            <input type="text" onkeyup="{validate_creds(id,type)}" id='edit_last_n'name="last_name" value="{{x.2}}"  >
+
+                        </div>
+            
+                        <div class="form-element-profile-edit">
+                            <label for="edit_mobile">Mobile No</label>
+                            <input type="number" onkeyup="{validate_creds(id,type)}" id='edit_mobile'name="mobile_no"  value="{{x.4}}" >
+
+                        </div>
+                        <div class="form-element-profile-edit">
+                            <label for="edit_loc0">BIO</label>
+                            <input type="text" id='edit_loc0'name="Bio" value="{{x.5}}" >
+                        </div>
+
+                    </div>
+                    <br>
+
+                    <div>
+
+                        <div>
+                            <h3>PASSWORD</h3>
+                        </div>
+
+                        <div class="form-element-profile-edit">
+                            <label for="current_password">Current Password</label>
+                            <input type="text" name="current_password" id="current_password">
+                        </div>
+                        <div class="form-element-profile-edit">
+                            <label for="new_password">New Password</label>
+                            <input type="password" onkeyup="{password_validations()}"  name="new_password" id="new_password">
+                        </div>
+
+                        <div class="form-element-profile-edit">
+                            <label for="confirm_password">Confirm Password</label>
+                            <input onkeyup="{password_validations()}" type="text" name="confimr_password" id="confimr_password">
+                        </div>
+
+                        <script>
+                            function password_validations(){
+                            var new_password=document.getElementById("new_password").value
+                            var confimr_password=document.getElementById("confimr_password").value
+
+                            if(new_password.toString() != confimr_password.toString()){ 
+                                document.getElementById("confimr_password").style="outline:3px solid red"
+                                submit=document.getElementById("update_profile_submit_btn")
+                                submit.disabled="disabled"
+                                submit.style="background-color:#616161;cursor: not-allowed;"
+                            }else{
+                                document.getElementById("confimr_password").style=""
+                                submit=document.getElementById("update_profile_submit_btn")
+                                submit.disabled=""
+                                submit.style=""
+
+                            }
+                         }
+
+                        </script>
+                        
+                        <div id="update_validtions">
+
+                        </div> 
+
+                        <script>
+
+
+
+                            function validate(content,format){
+                                var content_format= new Object()
+                                content_format= {
+                                    "text":"^[a-zA-Z]+$",
+                                    "number":"^[6-9]{1}[0-9]{9}$",
+                                    "email":"[a-zA-Z0-9\-\.]+[@][a-zA-Z]+[\.][a-zA-Z]{2,3}",      
+
+                                }
+
+                                re=new RegExp(content_format[format])
+                                
+                                result=re.test(content)
+
+                                return result
+
+                 
+                                console.log("Result : ",result)
+                                
+
+                            }
+
+
+                            var name_update= document.getElementById("edit_first_n").value 
+                            
+
+                            function validate_creds(id,type){
+                               var check=document.getElementById(id).value
+                               result=validate(check,type)
+                               console.log("op",result)
+                               if (check){
+                                        if (result){
+                                            document.getElementById(id).style=""
+
+                                            
+                                        }else{
+                                            document.getElementById(id).style="outline:3px solid red"
+                                          
+                                            
+                                        }
+                                }
+                               console.log("check : ",check)
+                          
+                                id1=document.getElementById("edit_first_n").style.outlineColor
+                                id2=document.getElementById("edit_last_n").style.outlineColor
+                                id3=document.getElementById("edit_mobile").style.outlineColor
+                                id4=document.getElementById("confimr_password").style.outlineColor
+
+                                if (id1 || id2 || id3 || id4 ){
+                                submit=document.getElementById("update_profile_submit_btn")
+                                submit.disabled="disabled"
+                                submit.style="background-color:#616161;cursor: not-allowed;"
+                                }else{
+                                submit=document.getElementById("update_profile_submit_btn")
+                                submit.disabled=""
+                                submit.style=""
+                                }
+
+                            }
+
+                           
+                        </script>
+
+
+                    </div>
+                    <div class="form-element-profile-edit">
+                        <button id="update_profile_submit_btn" type="submit">Update</button>
+                    </div>
+                    {% endfor %}
+                </form>
+  
+
+            </div>
+
+
+        </div>
+
+        <!--  -->
+        <div class="right_profile_default_Screen" >
+            <div id="profile_info_div" >
+                <!-- <div >
+                    <h3>PROFILE</h3>
+                </div> -->
+                <!-- <input type="text" name="profile_updating" value="True" hidden > -->
+                {% for x in user_data %}
+                <div >
+                    <!-- name -->
+                    <h2 style="text-transform: capitalize;"> {{x.1}} {{x.2}}</h2>
+                </div>
+                <div >
+                    <!-- email-id -->
+                    <h6>&#9993; {{x.3}}</h6>
+                </div>
+    
+                <div>
+                    <!-- mobile-no -->
+                    <h6>&#128222; {{x.4}}</h6>
+
+                </div>
+                <div >
+                    <!-- bio -->
+                    <h6>&#128227; {{x.5}}</h6>
+                </div>
+                {% endfor %}
+
+            </div>
+
+            <!-- User AD's Posted -->
+            <div id="user_posted_ads_details">
+                <h2>Posted Ad</h2>
+
+                {% if user_property_details == False  %}
+                    <div id="empty_page_div">
+                        <img style="width: 100%;" src="/static/no_data_image.jpg" alt=".... NO DATA ....">
+                    </div>
+                    <style>
+                        #user_posted_ads_details{
+                            background-color: white;
+                        }
+                    </style>
+                {% endif %}
+
+                <br>
+                {% for x,y in user_property_details.items %}
+
+                    <div id="property_posted_imgs_div">
+                        <a href="/product/{{x}}" style="text-decoration: none;" >
+                        <img id="property_posted_imgs" style="width:50%; height: 161px; border-radius: 5px;" src="/static/media/{{y}}" alt="">
+                        </a>
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        <div id="modify_btns">
+                            <div >
+                                <a href="/update/{{x}}"><button class="post_edit-delete_btn" style="margin-bottom: 10px;">Modify</button></a>
+                            </div>
+
+                            <div>
+                                <button class="post_edit-delete_btn" onclick="{confirm_delete_post(`{{x}}`)}">Remove</button>
+                            </div>
+                        </div>
+
+                
+                    </div>
+
+                {% endfor %}
+                      <!-- Deleteing user post   -->
+                      <form  id="myform" action="" method="post"> 
+                        {% csrf_token %}
+                        <input id="delete_post" name="delete_post" type="text" value=""  >
+                      </form>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+    <!-- Update Profile-Pic  -->
+    <form class="profile_pic_upload" action=""  enctype="multipart/form-data">
+        {% csrf_token %}
+        <div id="div2_profile">
+            <a id="close-profile-form">x</a>
+        </div>
+        <input type="text" value="change_profile_pic" hidden name="change_profile_pic" >
+        <div id="div1_profile">
+        <input type="file" name="upload_profile_pic" id="upload_profile_pic_input" accept="image/*" >
+        </div>
+        <br>
+        <div id="profile_pic_pop_up_submit_btn">
+            <button id="profile_pic_pop_up_submit_div_btn" disabled type="button">submit</button> 
+        </div>
+    </form>
+    
+    <script src="{% static 'js/profile/profile_mini.js' %}">
+    </script>
+
+
+
+    <!-- scripting  -->
+<script>
+    document.getElementById('delete_post').style='display:none';
+    function confirm_delete_post(a){
+        var b = confirm("Sure You Want It Delete ?")
+        if (b){
+            delete_post.value=a
+            myform.submit()
+            console.log(a)
+        }
+        else {
+            console.log("Delete Cancelled")
+        }
+    };
+
+        document.querySelector("#edit-profile-btn").addEventListener("click",function(){
+        document.querySelector(".right_profile_default_Screen").style="display:none;";
+        document.querySelector(".right_profile_div").classList.add("action");
+        
+        });
+
+// Update profile-pic logic
+    document.querySelector("#profile_image_tag").addEventListener("click",function(){
+    document.querySelector(".profile_pic_upload").classList.add("upload");
+    document.querySelector(".profile_main_div").classList.add('click_on_profile_btn');
+    });
+
+    document.querySelector("#close-profile-form").addEventListener("click",function(){
+        document.querySelector(".profile_pic_upload").classList.remove("upload");
+        document.querySelector(".profile_main_div").classList.remove('click_on_profile_btn');
+    });
+
+    // mobile edit-profile logic
+    var screen_width=innerWidth
+    if (screen_width < 600){
+        document.querySelector("#edit-profile-btn").addEventListener("click",function(){
+            document.getElementById("left_profile_div").style="display:none"
+        })
+    }
+</script>
+
+<!-- Old password not match -->
+
+<div class="password_not_matchs">
+    <h4 id="password_not_matchs_content">
+        Old Password Miss Match
+    </h4>
+ 
+</div>
+
+<style>
+.password_not_matchs{
+    position: fixed;
+    top :-250%;
+    right: 30%;
+    width: 30%;
+    height: 15%;
+    display: flex;
+    justify-content: center;
+    background-color: #dadada;
+    border-radius: 5px;
+}
+.password_not_matchs.active{
+    top :40%;
+}
+#password_not_matchs_content{
+    margin-top: 8%;
+    color: black;
+}
+</style>
+
+<script>
+    var check_for_old_password_valid = "{{password_not_match|safe}}" 
+    if (check_for_old_password_valid == "True" ){
+        document.querySelector(".password_not_matchs").classList.add("active")
+        window.setTimeout(fun_to_disble_popup,3000)
+    }
+
+    function fun_to_disble_popup(){
+        document.querySelector(".password_not_matchs").classList.remove("active")
+    }
+    document.getElementById("house_filter_search3").style="display:none"
+    document.getElementById("house_filter_search4").style="display:none"
+
+
+</script>
+
+
+</body>
+{% include 'footer.html' %}

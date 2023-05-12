@@ -1,0 +1,481 @@
+
+
+<style>
+
+    #house_filter_search3{
+        border-radius: 5px;
+        width: 127%;
+        height: 120%;
+        border: 0.5px solid black;
+        
+    }
+
+    .span_form_elements{
+        /* border: 1px solid blue; */
+        border: 1px solid lightslategrey;
+        display: inline-flex;
+        justify-content: space-evenly;
+        width: 100%;
+        border-radius: 5px;
+        height: 40px;
+
+    }
+
+    .contents_elements{
+        margin: 17.5px 10px 0px 0px;
+        /* height: 100%; */
+        /* border: 1px solid black; */
+    } 
+
+
+    table {
+        border: 1px solid red;
+        width: 100%;
+        height: 12%;
+    }
+    tr{
+        /* border: 1px solid red; */
+
+    }
+    td{
+        border: 2px solid black;
+        width: 50%;
+
+    }
+
+    #left_main_div{
+        display: flex;
+    }
+    #brand_logo{
+        height: 100%;
+        /* border: 1px solid darkblue; */
+        width: 8%;
+
+
+    
+    }
+    #brand_logo_img{
+        /* border: 1px solid darkblue; */
+        width: 75px;
+    }
+
+    /* Right main div */
+
+    #right_main_div{
+        display: flex;
+        border: 2px solid darkblue;
+        justify-content: end;
+    }
+
+/* search engine */
+
+#search_img_engine_div{
+    width: 20px;
+}
+#search_bar_city_or_pincodes{
+    display: flex;
+
+}
+
+#notification_icon{
+    width: 35px;
+
+}
+/* #notification_main_div1{
+    width: 30%;
+    height: 80%;
+    top: 10%;
+    right: 10%;
+    position: fixed;
+    background-color: lightblue;
+    border-radius: 10px;
+    overflow: scroll;
+    padding: 3px;
+    z-index: 1;
+  
+  } */
+
+/* profile */
+#Profile_logo_home_img{
+    /* width: 30px; */
+
+}
+
+#Profile_logo_home_img{
+      /* height: 46px; */
+      border-radius: 50%;
+    border: 0.5px solid red;
+    margin: -10px 7px 0px 20px;
+    background-color: rebeccapurple;
+    width: 50px;
+}
+
+</style>
+
+<table>
+    <tr>
+        <td>
+
+            <div id="left_main_div">
+
+                    <div id="brand_logo">
+                    <img id="brand_logo_img" src="/static/Rent-Your-Stay-.png" alt="LOGO">
+                    </div>
+
+                    <div class="contents_elements">
+                    <a class="btn btn-outline-succes" style="margin-left: 25px;" aria-current="page" href="/">Home</a>
+                    </div>
+
+                    <div class="contents_elements">
+                    <a class="btn btn-outline-succes" id="liked_btn_hearder" aria-current="page" {% if user_status %} href="/liked" {% else %} onclick="{login_popup()}" {% endif %}>Favourites</a>
+                    </div>
+                   
+            </div>
+
+        </td>
+        <td>
+
+            <div id='right_main_div'>
+
+
+                <!-- notification_tab  -->
+                <div  id="notification_main_div1">
+                    <!-- <button id="notification_close_btn" ><b>CLOSE</b></button>
+                    {% if message_data %}
+                    {% for x in message_data %}
+                    <div id="text_received_div">
+                        <span id="content_and_img_span">
+                        <div id="span_div1">
+                            <img id="message_for_property_image" src="/static/media/{{x.image}}" alt="..."> 
+                        </div>
+                        <div id="span_div2">
+                        <ol style="list-style-type: none;padding-left: 10px;">
+                        
+                            <li>
+                            <b>{{x.property_name}}</b> 
+                            </li>
+                            <li>
+                                <b>{{x.property_city}}</b>
+                            </li>
+                            <li>
+                            <b>₹{{x.monthly_rent}}</b> 
+                            </li>
+                            
+                            <li>
+                                <b> {{x.request_user_time}}</b>
+                            </li>
+                            </ol>
+
+                        </div>
+                        </span>
+                        <p style="padding: 5px;font-size: 18px;">Hello Sir, Im interested in your Property..
+                        Please Contact Me  &nbsp;  <b> " {{x.request_user_mobile_no}} "</b></p>
+                    </div>
+                    <hr>
+                    {% endfor %}
+                    {% endif %}-->
+                    <img class="contents_elements" id="notification_icon" src="/static/icons_noti.png" alt=""> 
+
+                </div>
+
+
+                <!-- search engine -->
+                <div class="contents_elements" id="search_engine_div">
+                    <form class="d-flex" id="search_bar_city_or_pincodes" role="search" method="get" action="/">
+                            {% csrf_token %} 
+
+                            <div class="form_elements">
+                            <input type="text" value="{% if no_data_found %} `{pop_up()}` {% endif %}" hidden> 
+
+                            </div>
+                            <div class="form_elements" >
+                                <input  onkeyup="{search_engine()}" class="form-control me-2" id="house_filter_search3"  type="search" placeholder="Location" aria-label="Search" name="search_area" autocomplete="off">
+                                <div id="params">
+
+                                </div>
+
+                                <script>
+
+                                        function search_engine(){
+                                        console.log("entered inside function")
+                                        data_entered=document.getElementById("house_filter_search3").value
+                                        user_entered=data_entered.toUpperCase()
+                                        var list_of_cities=["VISAKHAPATNAM","VIZIANAGARAM","EAST GODAVARI","GUNTUR","YSR KADAPA","KURNOOL","KRISHNA","NELLORE","ANANTHAPUR","CHITTOOR","SRIKAKULAM","VISHAKAPATNAM","WEST GODAVARI","ANANTHAPURAM","PENUKONDA","URAVAKONDA","BELUGUPPA","BATHALAPALLI","BUKKARAYASAMUDRAM","KOTHACHERUVU","HINDUPUR","RAPTHADU","SOMANDEPALLI","GARLADENNE","GORANTLA","BUKKAPATNAM","VAJRAKARUR","CHILAMATHURU","VIDAPANAKAL","CHENNEKOTHAPALLI","DHARMAVARAMU","KUDERU","LEPAKSHI","KANAGANIPALLE","PUTTAPARTHY","SINGANAMALA","RAJAVOMMANGI","PHIRANGIPURAM","PEDAKURAPADU","VEMURU","THULLUR",
+                                        "SATTENAPALLE","BHATTIPROLU","PEDAKAKANI","TSUNDUR","AMARAVATHI","ATCHAMPET","AMRUTHALUR","KROSURU","KOLLUR","VATTICHERUKURU","TENALI","KOLLIPARA","PONNUR","MANGALAGIRI","TADIKONDA","CHEBROLU","DUGGIRALA","TADEPALLE","MEDIKONDURU","EDLAPADU","PRATHIPADU","PEDANANDIPADU","MUPPALLA","NADENDLA","TADEPALLI","BAPULAPADU","PAMARRU","AGIRIPALLE","NANDIGAMA","PAMIDIMUKKALA","GANNAVARAM","VUYYURU","GUDIVADA","VEERULLAPADU","VATSAVAI","VIJAYAWADA (RURAL)","UNGUTURU","NANDIVADA","GUDLAVALLERU","PENUGANCHIPROLU","JAGGAYYAPETA","NUZVID","MOPIDEVI","PEDAPARUPUDI","G.KONDURU",
+                                        "MOVVA","KANCHIKACHERLA","GHANTASALA","CHANDARLAPADU","THOTLAVALLURU","KANKIPADU","CHALLAPALLE","MYLAVARAM","IBRAHIMPATNAM","PENAMALURU","MOPIDEVI","VIJAYAWADA RURAL","SARAVAKOTA","VEERAGHATTAM","CHEEDIKADA","ARAKU VALLEY","G.MADUGULA","GANTYADA","KURUPAM","CHINTALAPUDI","THONDANGI","RAMACHANDRAPURAM","TUNI","KARAPA","RAVULAPALEM","THALLAREVU","PITHAPURAM","ANAPARTHI","ATREYAPURAM","PEDDAPURAM","KARAPA","PEDAPUDI","JAGGAMPETA","BIKKAVOLU","THONDANGI","KIRLAMPUDI","RAJANAGARAM","SEETHANAGARAM","SAMALKOT","GANDEPALLI","KORUKONDA","GOLLAPROLU","KAKINADA","MANDAPETA",
+                                        "TALLAREVU","KADIAM","RAJAMAHENDRAVARAM  RURAL","RANGAMPETA","U.KOTHAPALLI","SANKAVARAM","YELESWARAM","VINUKONDA","NUZENDLA","RAYACHOTI (PART)","PORUMAMILLA (PART)","CHAPAD (FULL)","JAMMALAMADUGU (PART)","PULLAMPETA (PART)","LAKKIREDDIPALLE (PART)","KODUR (FULL)","RAJAMPETA (PART)","VALLUR (PART)","S.MYDUKUR (PART)","DUVVUR (PART)","CHINTAKOMMADINNE (FULL)","RAMAPURAM ( FULL)","CHENNUR (FULL)","KHAJIPET (FULL)","MUDDANUR (PART)","KONDAPURAM (PART)","KAMALAPURAM (PART)","B.KODUR (PART)","YERRAGUNTLA (PART)","RAJUPALEM (PART)","OBULAVARIPALLE (PART)","VONTIMITTA (PART)",
+                                        "PRODDATUR (PART)","BRAHMAMGARIMATTAM (PART)","SAMBEPALLI (FULL)","MYLAVARAM (PART)","BUDWEL (PART)","GOPAVARAM (PART)","THONDUR (PART)","SIDHOUT (PART)","CHITVEL (PART)","KALASAPADU (PART)","NANDALUR (PART)","PULIVENDULA (PART)","SRI AVADHUTA KASINAYANA  (PART)","VEMULA (PART)","KALLUR","PANYAM","BETAMCHERLA","NANDYAL","VELDURTHI","ORVAKAL","GUDUR","DHONE","VELDURTHI","MACHILLIPATNAM","PEDANA","SATYAVADU","VARADIAH PALEM","SULLURPET","NELLORE","TADA","DORAVARISATRAM","BOGOLE","KODAVALURU","MUTHUKUR","DAGADARTHI","KAVALI","VENKATACHALAM","MANUGOLU","NAIDUPETA","ALLURU",
+                                        "CHILAKUR","T.P.GUDUR","KOVURU","JALADANKI","OJILI","THONDAGI","U KOTHAPALLI","KAKINADA RURAL","ATCHUTAPURAM","RAMBILLI","NAKKAPALLI","PARAWADA","S RAYAVARAM","PAYAKARAOPETA","DARSI","ADDANKI","PODILI","JANAKAVARAM PANGULURU","KOMAROLU","KOTHAPATNAM","KURICHEDU","KONAKANAMITLA","GIDDALURU","NAGULUPPALAPADU","TANGUTURU","CUMBUM","MADDIPADU","RACHERLA","DONAKONDA","ULAVAPADU","ARDHAVEEDU","KANIGIRI","BALLIKURAVA","BESTHAVARIPETA","SINGARAYAKONDA","KORISAPADU","MARTUR","MARKAPUR","CHIMAKURTHI","ONGOLE","TARLUPADU","GUDLURU","PAMURU","CHINAGANJAM","CHIRALA","SANTHANUTALAPADU",
+                                        "SANTHAMAGULURU","ZARUGUMALLI","VETAPALEM","KANDUKURU","VELIGANDLA","PUTTAPARTHI","RENIGUNTA","CHANDRAGIRI","TIRUPATHI( U )","VADAMALAPETA","SRI KALAHASTI","YERPEDU","TIRUPATHI RURAL","PUTTUR","ETCHERLA","G.SIGADAM","LAVERU","RAJAM","RANASTALAM","AMUDALAVALASA","PONDURU","GARA","POLAKI","NARASANNAPETA","KASIMKOTA","RAMBILI","PADMANABHAM","YELAMANCHILI","S RAYAVARAM","ANANDAPAURAM","MUNAGAPAKA","BHOGAPURAM","DENKADA","CHEEPURUPALI","JAMI","PUSAPATIREGA","NELLIMARLA","S.KOTA","VEPADA","LAKKAVARAPUKOTA","S.KOTA.","KOTHAVALASA","VIZIAYANAGRAM","ANAKAPALLE","BHEEMUNIPATNAM","SABBAVARAM",
+                                        "ANANDAPURAM","PARAVADA","PENDURTHI","RAMBILLI","BONDAPALLE","GURLA","GARIVIDI","GAJAPATHINAGARAM","CHEEPURUPALLE","UNGUTURU","AKIVIDU (PART)","ACHANTA","BHIMADOLE","PALACOLE","GANAPAVARAM","PERAVALI","DENDULURU","PENTAPADU","PENUMANTRA","PEDAVEGI","JANGAREDDYGUDEM (PART)","PEDAPADU","VEERAVASARAM","BHIMAVARAM(PART)","ATTILI","KOVVUR(PART)","T P GUDEM","NIDADAVOLE(PART)","CHAGALLU(PART)","ELURU","UNDI(PART)","PENUGONDA","UNDRAJAVARAM","NARASAPUR","DWARAKATIRUMALA","TANUKU","IRAGAVARAM","PALACODERU","PODURU","MOGALTHUR (PART)","KAMAVARAPUKOTA","KALLA(PART)","T.NARASAPURAM"
+
+                                        ]
+                                    var current_index = 0
+                                        console.log("search_char",user_entered)
+                                        checking_for_existance=document.getElementById("params").childElementCount  
+                                        var element = document.getElementById("params");
+                                            while (element.firstChild) {
+                                                element.removeChild(element.firstChild);
+                                            }     
+                                        for(var i=0;i<list_of_cities.length;i++)
+                                        {
+                                            if( list_of_cities[i].includes(user_entered)  && user_entered[0] == list_of_cities[i][0] )
+                                            {
+                                            storage=[]
+                                            storage[current_index]=list_of_cities[i]
+                                            current_index+=1
+                                            // console.log("test", (document.getElementsByTagName("p"))? true:false)  
+                                            console.log("storae2",storage.length)
+                                            checking_for_existance=0       
+                                            if (checking_for_existance<1)
+                                            {
+                                                console.log("storae2",storage)
+                                                console.log("storae2",storage.length)
+                                                for(c=0;c<storage.length;c++)
+                                                {
+                                                    if(storage[c]==null)
+                                                    {
+                                                    continue
+                                                    }
+                                                    x=document.createElement("a")
+                                                    x.innerHTML=storage[c]
+                                                    x.classList.add('search')
+                                                    x.onclick=function (){
+                                                    console.log("choosen",this.innerHTML)
+                                                    search_bar=document.getElementById("house_filter_search3")
+                                                    search_bar.value=this.innerHTML
+                                                    document.getElementById("search_bar_city_or_pincodes").submit()
+                                                    
+                                                    
+                                                    }
+                                                    document.getElementById("params").appendChild(x)
+                                                }
+                                            } 
+                                            }
+                                        }
+                                    }
+
+                        
+                                    
+                                </script>
+                            
+                            </div>
+                    
+                            <div class="form_elements">
+                                <button  class="btn btn-outline-succes" id="" type="submit"><img id="search_img_engine_div" src="/static/search-icon.webp" alt=""></button> &nbsp;
+
+                            </div>
+
+
+                     </form>
+                </div>
+                
+                <style>
+                    .form_elements{
+                        border: 1px solid red;
+                    }
+
+                    #{
+                        
+                    }
+
+                </style>
+
+                <!-- Post add button -->
+
+                <div  class="sub_div_contents_main_div_right">
+                              
+                    <div class="contents_elements">
+                      <form id="homepage_sell_btn" action="/sell" >
+                        <div class="form_elements">
+                          <button  class="btn btn-outline-succes"
+                          style="    background-color: gold;
+                          color: black;
+                          font-weight: bold;
+                         " type="submit">POST</button>
+        
+                        </div>
+        
+                        </form>
+                    </div>
+                  
+                    <form action="">
+                    <a {% if user_status %} href="/profile" {% else %} onclick="{login_popup()}" {% endif %} id="Profile_logo_home" ><img id="Profile_logo_home_img"  src="/static/upload_profile_pic.jpeg" alt="..."></a>
+        
+                    </form> 
+        
+                </div>
+              
+
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>   
+
+        </td>
+    </tr>
+
+</table>
+
+
+
+
+
+        
+
+
+  <div class="data_not_found"  >
+    <h3>Data Not Found</h3>
+  </div>
+
+
+
+  <style>
+    .data_not_found{
+
+      position: absolute;
+      width: 33%;
+      height: -1%;
+      /* margin: -10%; */
+      text-align: center;
+      padding: 3%;
+      top: -155rem;
+      right: 33%;
+      background: whitesmoke;
+      border-radius: 10px;
+      z-index: 1;
+  }
+            
+    .data_not_found.active{
+      /* border: 1px solid red; */
+      top: 15rem;
+
+    }
+  </style>
+
+   <!-- <script>
+
+    // Checking for otp_token in cookie and start showing the sell btn
+   var a = document.cookie.match('otp_token')
+   console.log("cookie : ",a)
+   if(a){
+    console.log("True")
+    document.querySelector("#homepage_login_btn").style="display:none"
+    document.querySelector("#homepage_signup_btn").style="display:none"
+
+   }
+
+   else{
+    document.getElementById('homepage_sell_btn').style="display:none"
+   };
+
+   </script> -->
+   
+   
+</div>
+</div>
+
+
+<div id="mobile_view_search_right">
+<form class="d-flex" role="search" method="get" action="/">
+{% csrf_token %} 
+
+<input type="text" value="{% if no_data_found %} `{pop_up()}` {% endif %}" hidden> 
+<div class="span_form_elements">
+<input onkeyup="{search_engine()}" class="form-control me-2" id="mobile_view_search1" type="search" placeholder="City (or) PinCode" aria-label="Search" name="search_area">
+<button  class="btn btn-outline-succes" id="mobile_view_search1"  type="submit"><img id="search_btn" src="/static/search-icon.webp" alt=""></button> &nbsp;
+<div id="mobile_params">
+
+</div>
+
+</div>
+
+</form>
+</div>
+</div>
+
+
+
+
+<div id="mobile_360_width">
+
+<div class="mobile_360_width_div">
+
+  <div class="mobile_360_inner_div" >
+    <span class="mobile_360_width_inner_span"> 
+      <p class="mobile_360_width_inner_p">&#127968;</p>
+      <a class="btn btn-outline-succes" aria-current="page" href="/">Home</a>
+    </span>
+  </div>
+  <div class="mobile_360_inner_div" >
+    <span class="mobile_360_width_inner_span">
+      <p class="mobile_360_width_inner_p"> &#128172;</p>
+      <a class="btn btn-outline-succes" >Chats</a>
+    </span>
+
+  </div>
+
+
+</div>
+
+<div id="mobile_360_width_div1">
+  <span class="mobile_360_width_inner_span">
+    <p class="mobile_360_width_inner_p">&#10133;</p>
+    <p><a {% if user_status %} href="/sell" {% else %} onclick="{login_popup()}" {% endif %} class="btn btn-outline-succes" id="mobile_360_width_inner_a">Post</a></p>
+  </span>
+
+</div>
+
+<div class="mobile_360_width_div">
+
+  <div class="mobile_360_inner_div" >
+    <span class="mobile_360_width_inner_span">
+      <p class="mobile_360_width_inner_p"> &#128420;</p>
+      <a class="btn btn-outline-succes" id="liked_btn_hearder" aria-current="page" {% if user_status %} href="/liked" {% else %} onclick="{login_popup()}" {% endif %}>Liked</a>  
+    </span>
+  </div>
+
+  <div class="mobile_360_inner_div">
+    <span class="mobile_360_width_inner_span">
+      <p class="mobile_360_width_inner_p">&#128100;</p>
+      <a class="btn btn-outline-succes" {% if user_status %} href="/profile" {% else %} onclick="{login_popup()}" {% endif %}>Account</a>
+    </span>
+  </div>
+
+</div>
+</div>
+
+
+
+
+<!-- notifications scripts -->
+<script>
+document.querySelector("#messenger_img").addEventListener("click",function(){
+document.getElementById("messenger_img").style="display:none";
+document.getElementById('notification_main_div1').style="display:";
+document.body.style="overflow:hidden; opacity:20px"
+
+})
+document.querySelector("#notification_close_btn").addEventListener("click",function(){
+document.getElementById('notification_main_div1').style="display:none"
+document.getElementById("messenger_img").style="display:";
+document.body.style="overflow:"
+
+})
+document.getElementById('notification_main_div1').style="display:none"
+</script>

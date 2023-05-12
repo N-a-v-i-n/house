@@ -1,0 +1,132 @@
+{% include 'header.html' %}
+<h3>Plans Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque delectus repudiandae possimus magni sapie.</h3>
+
+
+<div class="subdiv">
+    <div class="plans">
+        <div class="plan_inner_div"  onmouseover="{plan_mouse_over('plan_500_selected')}" onmouseout="plan_mouse_over_out('plan_500_selected')">
+
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, pl'aceat et? Praesentium autem magnam nesciunt quam. Ullam similique cupiditate ratione illum voluptatum, accusamus voluptates est soluta odit quod, minima at?
+            </p>
+            <b>
+                $500
+            </b>
+            <form action="" method="post">
+                {% csrf_token %}
+                <input type="text" value="plan_500_selected" name="plan_selected" hidden>
+                <button class="plan_btn" id="plan_500_selected"  >Buy</button>
+            </form>
+
+        </div>
+        
+    </div>
+
+    <div class="plans">
+        <div class="plan_inner_div"  onmouseover="{plan_mouse_over('plan_1000_selected')}" onmouseout="plan_mouse_over_out('plan_1000_selected')">
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, placeat et? Praesentium autem magnam nesciunt quam. Ullam similique cupiditate ratione illum voluptatum, accusamus voluptates est soluta odit quod, minima at?
+            </p>
+            <b>
+                $1000
+            </b>
+            <form action="" method="post">
+                {% csrf_token %}
+                <input type="text" value="plan_1000_selected" name="plan_selected" hidden>
+                <button class="plan_btn" id="plan_1000_selected">Buy</button>
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="subdiv" >
+    <div class="plans">
+        <div class="plan_inner_div"  onmouseover="{plan_mouse_over('plan_1500_selected')}" onmouseout="plan_mouse_over_out('plan_1500_selected')">
+
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, placeat et? Praesentium autem magnam nesciunt quam. Ullam similique cupiditate ratione illum voluptatum, accusamus voluptates est soluta odit quod, minima at?
+            </p>
+            <b>
+                $1500
+            </b>
+            <form action="" method="post">
+                {% csrf_token %}
+                <input type="text" value="plan_1500_selected" name="plan_selected" hidden>
+                <button class="plan_btn" id="plan_1500_selected">Buy</button>
+            </form>
+
+        </div>
+    </div>
+
+    <div class="plans">
+       <div class="plan_inner_div"  onmouseover="{plan_mouse_over('plan_2000_selected')}" onmouseout="plan_mouse_over_out('plan_2000_selected')">
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, placeat et? Praesentium autem magnam nesciunt quam. Ullam similique cupiditate ratione illum voluptatum, accusamus voluptates est soluta odit quod, minima at?
+            </p>
+            <b>
+                $2000
+            </b>
+            <form action="" method="post">
+                {% csrf_token %}
+                <input type="text" value="plan_2000_selected" name="plan_selected" hidden>
+                <button class="plan_btn" id="plan_2000_selected">Buy</button>
+            </form>
+
+       </div>
+    </div>
+</div>
+
+<!-- Payment gateway integrations -->
+
+<!-- Razorpay's Javascript code. -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+	
+	if ('{{Verified}}'){
+        var options = {
+	
+        // Enter the Key ID generated from the Dashboard
+        key: "{{ razorpay_merchant_key }}",
+        
+        // Amount is in currency subunits.
+        // Default currency is INR. Hence,
+        // 50000 refers to 50000 paise
+        amount: "{{ razorpay_amount }}",
+        currency: "{{ currency }}",
+        
+        // Your/store name.
+        name: "Dj Razorpay",
+        
+        // Pass the `id` obtained in the response of Step 1
+        order_id: "{{ razorpay_order_id }}",
+        callback_url: "{{ callback_url }}",
+        };
+        
+        // initialise razorpay with the options.
+        var rzp1 = new Razorpay(options);
+        
+        // add event listener to the payment button.
+
+        rzp1.open();
+        e.preventDefault();
+	};
+</script>
+
+
+
+<script>
+function plan_mouse_over(id){
+    document.getElementById(id).style="top:auto;"
+}
+
+function plan_mouse_over_out(id){
+    document.getElementById(id).style="top:-150rem;"
+
+}
+
+</script>
+
+
+{% include 'footer.html' %}

@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rentyourstay.in</title>
+
+    <link rel="stylesheet" href="/static/admin_user.css">
+
+    
+<script>
+
+    // refresh=reset_form
+
+    function validate(content,format){
+        var content_format= new Object()
+        console.log("format is : ",format)
+        content_format= {
+            "property_name": "^[a-zA-Z ]+$",
+            "property_pincode": "^[1-9][0-9]{5}$",   
+            "property_floor": "^[0-9]+$",
+            "house_area" : "^[0-9]{1,9}$",
+            "property_city": "^[a-zA-Z ]+$",
+            "monthly_rent": "^[0-9]{1,9}$",
+            "temp": "^[0-9]+$"
+        }
+
+        re=new RegExp(content_format[format])
+
+        console.log("re",re)
+        console.log("content : ",content)
+        
+        result=re.test(content)
+
+        return result
+
+
+        console.log("Result : ",result)
+        
+
+    }    
+
+    function validate_creds(id,name){
+       var check=document.getElementById(id).value
+       result=validate(check,name)
+    //    console.log("Type : ",name)
+    //    console.log("op",result)
+       if (check){
+                if (result){
+                    document.getElementById(id).style=""
+
+                    
+                }else{
+                    document.getElementById(id).style="outline:3px solid red"
+                  
+                    
+                }
+        }
+       console.log("check : ",check)
+  
+        id1=document.getElementById("property_owner_name_div").style.outlineColor
+        id2=document.getElementById("property_city_div").style.outlineColor
+        id3=document.getElementById("property_pincode_div").style.outlineColor
+        id4=document.getElementById("property_floor_div").style.outlineColor
+        id5=document.getElementById("property_squareft_div").style.outlineColor
+        id6=document.getElementById("property_monthly_rent_div").style.outlineColor
+        // id7=document.getElementById("confimr_password").style.outlineColor
+
+
+        if (id1 || id2 || id3 || id4 || id5 || id6){
+        submit=document.getElementById("selling_submit_btn")
+        submit.disabled="disabled"
+        submit.style="background-color:#616161;cursor: not-allowed;"
+        }else{
+        submit=document.getElementById("selling_submit_btn")
+        submit.disabled=""
+        submit.style=""
+        }
+
+    }
+
+    function checkbox_btn_click(input_id,id) {
+                    element=document.getElementById(input_id).click();
+
+                };
+
+ 
+</script>
+
+
+
+
+
+
+
+</head>
+<body>
+    <script>
+    </script>
+    <form action="" method="post" name="user_creation_form" id="user_creation_form">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Manual User and Post Ad</legend>
+
+            <div>
+                <label for="admin_firstname">New User-FirstName</label>
+                <input type="text"name="admin_firstname" id="admin_firstname" {% if user_firstname %} value="{{user_firstname}}" disabled {% endif %} required >
+            </div>
+
+            <div>
+                <label for="admin_mobile_no">User Mobile-No</label>
+                <input type="number" name="admin_mobile_no" id="admin_mobile_no" {% if user_mobile_no  %} value="{{user_mobile_no}}" disabled {% endif %} required >
+            </div>
+
+
+            <div>
+                <label for="admin_email_id">User Email-Id</label>
+                <input type="email" name="admin_email_id" id="admin_email_id" {% if user_email_id %} value="{{user_email_id}}" disabled {% endif%} required >
+            </div>
+
+            <div id="form1_btns">
+                <button type="submit" id="submit_btn">create</button>
+                <button type="reset" id="reset_btn" onclick="{reload_page()}">reset</button>
+            </div>
+            <script>
+                function reload_page(){
+                    window.location.href=""
+                }
+            </script>
+
+        </fieldset>
+
+    </form>
+
+                
+
+        {% if user_added == True %}
+        
+        <form action="" id="posting_Ad_form" method="post">
+
+            {% csrf_token %}
+            <fieldset>
+                <legend>
+                    Posting Ad {{x}}
+                </legend>
+
+            {% if Previous_posted_info  %}
+            <input type="checkbox" name="func_check_to_copy" id="func_check_to_copy"> copy previous <em>POSTED</em>  info
+            <br>
+            <br>
+
+            {% endif  %}
+
+
+
+            <div>
+
+                <input type="file" onkeyup="validate_creds(id,name)"  class="inner_div_input_elements"  id="user_images" name="temp" multiple accept="image/*" maxlength="10" required>
+
+                <script>
+
+                // image ---> validations
+                let user_images=[]
+                default_width=1000
+                count=0    
+
+                
+                state_exe=window.setInterval(start_upload,5000)
+                function start_upload(){
+                console.log("len",user_images.length)
+                if (user_images.length == length && user_images.length != 0){   
+                    console.log("started uploading")
+                    execute_upload()
+                    console.log(count)
+                    document.getElementById("selling_submit_btn").disabled=""
+                    clearInterval(state_exe)
+                }   
+                }
+           
+                function execute_upload(){
+
+                console.log("user_images_len",user_images.length)
+                for (a=0;a<user_images.length;a++)
+                {
+                    console.log("upload",user_images[a])
+                    result = upload_img(user_images[a])
+                    console.log("result",result)
+                }
+                }
+
+                // upload file 
+                let upload_img = (file) =>{
+                const url = "http://127.0.0.1:8000/admin-user/upload"
+                let payload = new FormData()
+                payload.append('temp',file)
+                payload.append('user_email','{{user_email_id|safe}}')
+                fetch(url,{
+                    method : 'POST',
+                    // headers,
+                    body : payload
+
+                })
+
+                return 'success'
+
+                }
+
+                // on click POST AD send data images to be
+                let imgae_file=document.querySelector("#user_images").addEventListener("change",(e)=>
+                {
+                document.getElementById("selling_submit_btn").disabled="disabled"
+                length=e.target.files.length
+                console.log("length : ",length)
+                if (length < 15){
+                for(let a=0;a<length;a++)
+                {
+                    file=e.target.files[a]
+                    image_instance=new FileReader
+                    image_instance.readAsDataURL(file)
+                    image_instance.onload = (e)=>
+                        {
+                            image_url=e.target.result
+                            let image=document.createElement("img")
+                            image.src=image_url
+                    // document.getElementById("div_empty1").appendChild(image)
+                            image.onload=(e)=>
+                            {
+                            let canvas = document.createElement("canvas")
+                            let ratio=default_width / e.target.width
+                            canvas.width=default_width
+                            canvas.height=e.target.height * ratio
+                            const context=canvas.getContext("2d")
+                            context.drawImage(image,0,0,canvas.width,canvas.height)
+                            // let new_img_url=context.canvas.toDataURL("image/jpeg",90)
+                            let new_img_url=context.canvas.toDataURL("image/jpeg",100)
+                            let image_file=urlToFile(new_img_url)
+                            console.log("image_file : ",image_file)
+                            user_images[a]=(image_file[0])
+                            
+                           
+                    // upload_img(image_file)
+                        // display_selected_images
+                        // image_inst=new FileReader
+                        // console.log("user_image",user_images)
+                        // image_inst.readAsDataURL(user_images[a])
+                        // image_inst.onload = (e)=>{
+                        // image_URL=e.target.result
+                            // }
+                        }  
+                          
+                    } 
+                }
+        
+            }else {
+                document.getElementById("user_images").value=""
+                alert("You can only upload a maximum of 14 files")
+                document.getElementById("selling_submit_btn").disabled=""
+                clearInterval(state_exe)
+            }
+                })
+
+                urlToFile = (url) =>{
+                let arr=url.split(",")
+                let mime = arr[0].match(/:(.*?);/)[1]
+                let data = arr[1]
+                // decode the data
+                let datastr =atob(data)
+                len=datastr.length
+                let dataArr = new Uint8Array(len)
+                while(len--)
+                {
+                    dataArr[len] = datastr.charCodeAt(len)
+                }
+                file = new File([dataArr],count+'.jpeg',{type: mime})
+                console.log("file_name",file)
+                count++;
+                // console.log("data : ",file)
+                // let send = document.getElementById("user_images")
+                return [file]
+          
+                }
+
+               
+                
+          
+             </script>
+            </div>
+
+            <div >
+                <input type="email" value="{{user_email_id}}" hidden name="new_user_email" required>
+            </div>
+
+            <div >
+                <input type="text" onkeyup="validate_creds(id,name)"  class="inner_div_input_elements" id="property_owner_name_div" name="property_name"   placeholder="Owner Name" required>
+            </div>
+
+            <div >
+                <!-- <input type="text" name="property_type" placeholder="property type"> -->
+                <select class="inner_div_select_elements" id="property_type_select" name="property_type" required >
+                   
+                    <option value="">Property Type</option>
+                    <option value="House">House</option>
+                    <option value="Appartment">Appartment</option>
+                    <option value="PG-Girls">PG-Girls</option>
+                    <option value="PG-Boys">PG-Boys</option>
+                </select>
+
+              
+            </div>
+
+            <div>
+                <select class="inner_div_select_elements" name="property_state" id="property_state_select" required>
+                    <option value="">State</option>
+                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                    <option value="" disabled>--Others Will Update Soon--</option>
+                </select>
+
+            </div>
+
+            <div>
+                <select class="inner_div_select_elements" name="property_distict" id="property_distict_select" required>
+                    <option>Distict</option>
+                    <option value="Parvathipuram">Parvathipuram </option>
+                    <option value="Srikakulam" >Srikakulam </option>
+                    <option value="Paderu">Paderu </option>
+                    <option value="Visakhapatnam">Visakhapatnam </option>
+                    <option value="Anakapalli">Anakapalli </option>
+                    <option value="Kakinada">Kakinada </option>
+                    <option value="Amalapuram">Amalapuram </option>
+                    <option value="Rajamahendravara">Rajamahendravara </option>
+                    <option value="Bheemavaram">Bheemavaram </option>
+                    <option value="Eluru">Eluru </option>
+                    <option value="Machilipatnam">Machilipatnam </option>
+                    <option value="Vijayawada">Vijayawada </option>
+                    <option value="Guntur">Guntur </option>
+                    <option value="Bapatla">Bapatla </option>
+                    <option value="Narsaraopeta">Narsaraopeta </option>
+                    <option value="Ongole">Ongole </option>
+                    <option value="Nellore">Nellore </option>
+                    <option value="Kurnool">Kurnool </option>
+                    <option value="Nandyal">Nandyal </option>
+                    <option value="Ananthapuram">Ananthapuram </option>
+                    <option value="Puttaparthy">Puttaparthy </option>
+                    <option value="Kadapa">Kadapa </option>
+                    <option value="Rayachoty">Rayachoty </option>
+                    <option value="Chittoor">Chittoor </option>
+                    <option value="Tirupati">Tirupati </option>
+                    <option value="Vizianagaram">Vizianagaram </option>
+                </select> 
+            </div>
+
+            <div>
+                <input type="text" onkeyup="validate_creds(id,name)" class="inner_div_input_elements" id="property_city_div" name="property_city" placeholder="City / Village" required>
+
+            </div>
+            <div>
+                <input type="number"  onkeyup="validate_creds(id,name)" id="property_pincode_div" class="inner_div_input_elements" name="property_pincode" placeholder="Pin-Code" required>
+
+            </div>
+
+            <div>
+                                    
+                <input type="number" class="inner_div_input_elements" id="property_floor_div" onkeyup="validate_creds(id,name)" name="property_floor" placeholder="Floor" required>
+
+            </div>
+            <div>
+                <select class="inner_div_select_elements" name="property_rooms" id="property_rooms_select" required>
+                    <option value="none">Rooms </option>
+                    <option value="1room">1room</option>
+                    <option value="1rk">1rk</option>
+                    <option value="1bhk">1bhk</option>
+                    <option value="2bhk">2bhk</option>
+                    <option value="3bhk">3bhk</option>
+                    <option value="Villa">Villa</option>
+                    
+                </select>
+
+            </div>
+
+
+            <div>
+                <input type="squareft" onkeyup="validate_creds(id,name)" id="property_squareft_div" class="inner_div_input_elements" name="house_area" placeholder=" Area Square-Feet" required>
+
+            </div>
+            <div>
+                <select class="inner_div_select_elements"  name="furnished_or_semi" id="furnished_or_semi_select" required>
+                    <option value="none">Furnishing</option>
+                    <option value="Semi-Furnished">Semi-Furnished</option>
+                    <option value="Furnished">Furnished</option>
+                    <option value="None">None</option>
+                </select>
+            </div>
+            <div class=".form-upload-element">
+                <div style="text-align: center;margin-left: 5%;">
+                    <b>House Appliances</b>
+                </div>
+                
+                <div id="outer_radio_btns_div">
+
+                    <div class="sub_radio_boxs">
+                        <div  onclick="{checkbox_btn_click('appliance_tv',id)}" id="appliance_tv_div" class="radio_btns"  >
+                            <label for="">TV</label>
+                            <input type="checkbox" name="appliance_tv" onclick="{this.click()}" id="appliance_tv" >
+
+                        </div>
+
+        
+                        <div class="radio_btns" onclick="{checkbox_btn_click('appliance_fridge')}">
+                            <label for="">Fridge</label>
+                            <input type="checkbox" name="appliance_fridge" onclick="{this.click()}" id="appliance_fridge"   >
+                        </div>
+        
+                        <div class="radio_btns" onclick="{checkbox_btn_click('appliance_sofa')}">
+                            <label for="">Sofa</label>
+                            <input type="checkbox" name="appliance_sofa" onclick="{this.click()}" id="appliance_sofa"   >
+                        </div>
+                    </div>
+
+                    <div class="sub_radio_boxs" >
+                        <div class="radio_btns" onclick="{checkbox_btn_click('appliance_bed')}">
+                            <label for="">Bed</label>
+                            <input type="checkbox" name="appliance_bed" onclick="{this.click()}" id="appliance_bed"   >
+                        </div>
+        
+                        <div class="radio_btns" onclick="{checkbox_btn_click('appliance_dresser')}">
+                            <label for="">Dresser</label>
+                            <input type="checkbox" name="appliance_dresser" onclick="{this.click()}" id="appliance_dresser" >
+                        </div>
+        
+                        <div class="radio_btns" onclick="{checkbox_btn_click('appliance_ac')}">
+                            <label for="">AC</label>
+                            <input type="checkbox" name="appliance_ac" onclick="{this.click()}" id="appliance_ac"  >
+                        </div>
+
+                    </div>
+
+                    <div class="sub_radio_boxs" >
+                        <div class="radio_btns"onclick="{checkbox_btn_click('appliance_washing_machine')}">
+                            <label for="">Washing Machine</label>
+                            <input type="checkbox" name="appliance_washing_machine" onclick="{this.click()}" id="appliance_washing_machine"   >
+                        </div>
+        
+                        <div class="radio_btns" onclick="{checkbox_btn_click('appliance_water_heater')}">
+                            <label for="">Water Heater</label>
+                            <input type="checkbox" name="appliance_water_heater" onclick="{this.click()}" id="appliance_water_heater"     >
+                        </div>
+        
+                        <div class="radio_btns" onclick="{checkbox_btn_click('appliance_water_purifier')}">
+                            <label for="">Water Purifier</label>
+                            <input type="checkbox" name="appliance_water_purifier" onclick="{this.click()}" id="appliance_water_purifier"   >
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="sub_radio_boxs" >
+                        <div class="radio_btns" onclick="{checkbox_btn_click('appliance_fan')}">
+                            <label for="">Fans</label>
+                            <input type="checkbox" name="appliance_fan" onclick="{this.click()}" id="appliance_fan"   >
+                        </div>
+
+                        <div class="radio_btns" onclick="{checkbox_btn_click('appliance_tubelights')}">
+                            <label for="">Tube-lights</label>
+                            <input type="checkbox" name="appliance_tubelights" onclick="{this.click()}" id="appliance_tubelights"   >
+                        </div>
+
+                        <div class="radio_btns" onclick="{checkbox_btn_click('appliance_Inventers')}">
+                            <label for="">Inventer</label>
+                            <input type="checkbox" name="appliance_Inventers" onclick="{this.click()}" id="appliance_Inventers"   >
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+
+            <div>    
+                <input type="number" onkeyup="validate_creds(id,name)" id="property_monthly_rent_div" class="inner_div_input_elements" name="monthly_rent" placeholder="Monthly Rent" required>
+
+            </div>
+            <div>
+                <!-- <input type="text" name="parking" placeholder="Parking"> -->
+                <select class="inner_div_select_elements" required name="parking" id="parking_select">
+                    <option value="none" >Parking</option>
+                    <option value="Bike Only">Bike Only</option>
+                    <option value="Car Only">Car Only</option>
+                    <option value="Car & Bike">Car & Bike </option>
+                </select>
+            </div>
+
+            
+            {{Previous_posted_info|json_script:'new_script'}}
+
+
+            {% load static %}
+            <script src="{% static 'js/admin_user/admin_user_mini.js' %}" ></script>
+
+
+        
+        
+
+    </form>
+
+    <div class="" id="selling_submit_btn_div">
+        <button id="selling_submit_btn"  type="submit">
+            POST AD
+        </button>
+
+        <button id="selling_submit_btn2"  type="reset">
+            Reset
+        </button>
+        
+    </div>
+</fieldset>
+    {% endif %}
+
+
+<style>
+
+#user_creation_form fieldset div label{
+    display: inline-flex;
+    width: 12%;
+    margin: 0% 3% 0% 0%;
+    font-size: 15px;
+}
+
+#user_creation_form fieldset div input{
+    width: 25%;
+    border-radius: 5px;
+    height: 2rem;
+    margin: 5px;
+}
+
+#user_creation_form fieldset div button{
+    height: 35px;
+    width: 75px;
+    border-radius: 5px;
+    border: none;
+    margin: 2% 0.5%;
+    position: relative;
+    background-color: royalblue;
+    color: #fff;
+}
+
+.inner_div_input_elements {
+    width: 25%;
+    border-radius: 5px;
+    height: 2rem;
+    margin: 5px;
+}
+
+.form-upload-element {
+    border: 1px solid black;
+    text-align: center;
+    width: 55%;
+    /* padding: 10px; */
+    display: inline-table;
+    margin: 5px;
+    border-radius: 10px;
+}
+.sub_radio_boxs {
+    display: flex;
+    /* border: 1px solid red; */
+    justify-content: center;
+}
+.radio_btns {
+    border: 1px solid blue;
+    width: 100%;
+    margin: 10px;
+    position: relative;
+    text-align: justify;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.sub_radio_boxs input[type="checkbox" i] {
+    width: 20%;
+    height: 40%;
+    position: absolute;
+    right: 0%;
+    top: 30%;
+
+    
+}
+
+#posting_Ad_form label {
+    display: inline-block;
+    margin: 10px;
+    /* border: 1px solid red; */
+    text-align: left;
+    font-weight: 600;
+}
+
+#posting_Ad_form div select{
+    width: 25.5%;
+    border-radius: 5px;
+    height: 37px;
+    margin: 5px 0px 5px 5px;
+}
+
+#selling_submit_btn,#selling_submit_btn2{
+    height: 35px;
+    width: 75px;
+    border-radius: 5px;
+    border: none;
+    margin: 2% 0.5%;
+    position: relative;
+    background-color: royalblue;
+    color: #fff;
+}
+#selling_submit_btn_div{
+    text-align: center;
+}
+
+@media only screen and (max-width:600px){
+    #user_creation_form fieldset div label{
+    display: block;
+    width: 100%;
+    margin: 0% 3% 0% 0%;
+    font-size: 15px;
+}
+#user_creation_form fieldset div input {
+    width: 95%;
+    border-radius: 5px;
+    height: 2rem;
+    margin: 5px 0px 5px 2px;
+}
+#form1_btns{
+    text-align: center;
+}
+#user_creation_form fieldset {
+    padding: 5%;
+
+}
+
+.inner_div_input_elements{
+    width: 95%;
+    border-radius: 5px;
+    height: 2rem;
+    margin: 5px 0px 5px 2px;
+    
+}
+
+#posting_Ad_form div select{
+    width: 97%;
+    border-radius: 5px;
+    height: 37px;
+    margin: 5px 0px 5px 2px
+}
+
+#posting_Ad_form div{
+    margin-bottom: 2px;
+}
+#posting_Ad_form fieldset{
+    padding: 5%;
+}
+.form-upload-element {
+    text-align: center;
+    height: 10%;
+    width: 100%;
+    padding: 0px;
+    display: inline-table;
+    margin: 2px;
+    border-radius: 5px;
+}
+.sub_radio_boxs {
+    display: block;
+}
+.radio_btns {
+    width: auto;
+}
+#posting_Ad_form label {
+    display: inline-block;
+    margin: 10px;
+    /* border: 1px solid red; */
+    text-align: left;
+    font-weight: 600;
+}
+
+
+}
+
+</style>
+ 
+</body>
+</html>

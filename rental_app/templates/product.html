@@ -1,0 +1,349 @@
+{% include 'header.html' %}
+<body>
+
+    <div class="product_pg_main_div">
+
+        <div id="topdiv">
+    
+                    <div id="right_arrow_div" onclick="{change2()}">
+                        <a onclick="{change2()}"><img id="right_arrow1" src="/static/right_arrow.png" alt=""></a>
+                    </div>
+                    <div id="left_arrow_div" onclick="{change3()}">
+                        <a onclick="{change3()}"><img  id='left_arrow1'src="/static/left_arrow.png" alt=""></a>
+                    </div>
+ 
+                <!-- <a onclick="{change3()}"><img  id='left_arrow1'src="/static/left_arrow.png" alt=""></a> -->
+                <a onclick="{open_image_in_default_win()}"><img id="property_img_banner" src='' alt="..." ></a>
+                <!-- <a  onclick="{change2()}"><img id="right_arrow1" src="/static/right_arrow.png" alt=""></a> -->
+
+        </div>
+        <!-- this is product owner details and property details with favourate btn -->
+        <div id="product_price_details">
+            <form id="heart_shape_like_btn" action="" method="post" >{% csrf_token %}<button style="border: none; background-color: white; font-size: 150%; color: black; " type="submit"> &#10084;</button></form>
+
+            {% for x in fetching_price_and_user_details %}
+
+            <!-- Share Button -->
+            <div>
+                <a id="share_button" href="whatsapp://send?text=https://www.rentyourstay.com/product/{{x.4}}/">&#10150;</a>
+            </div>
+
+
+            <h4 style="font-size: xx-large; font-weight:bold">₹ {{x.0}}</h4>
+            <h6 style="font-size: small;font-weight:600;">{{x.1}}, {{x.2}}</h6>
+            <div>
+                Ad Posted on - <span  style="font-size: large;font-weight:700;" >{{x.3.date}}</span>
+                
+            </div>         
+            <br>
+            {% endfor %}
+
+
+            <div id="product_owner_details">
+
+                {% for x in user_data %}
+                <div>
+                    <h3> <img style=" width: 20%; border-radius: 50%;" src="/static/{% if x.4 == ''  %}upload_profile_pic.jpeg{% else %}{{x.4}}{% endif %}" alt=""> {{x.1}} {{x.2}}</h3>
+                </div>
+                <div>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <input type="text" name="request_for_view_contact_no" value="{{x.0}}"  hidden>
+
+                        {% if access_for_contact_no %}<p id="phone_details"> &#9742; &nbsp;  {{x.3}} </p> {% endif %}
+                        <button type="submit" id="request_for_view_contact_no_btn" > &#9742; &nbsp; Click Here</button>
+                    </form>
+                    <script>
+                         
+
+                        if ("{{access_for_contact_no|safe}}" =="True"){
+                            document.getElementById("request_for_view_contact_no_btn").style="display:none";
+                        }
+
+                    </script>
+                
+                </div>
+                <div>
+                <p id="account_since"> &#9203; &nbsp;    Member Since   {{x.5.year}} </p> 
+                </div>
+                {% endfor %}
+                <br>
+
+            </div> 
+
+        </div>
+
+      
+
+
+        <div id="div2">
+          
+            <h3 style="text-align: center;">Property Details</h3>
+
+            <div id=property_sub_div>
+                                  
+                    {% for x in property_data %}
+
+                    <div class="properties_div">
+                        <div class="property_div_class"> 
+                            <div class="property_key"> <p>Property Name</p></div>
+                            <div class="property_value"> <h6>{{ x.property_name }}</h6></div> 
+                        </div>
+                    </div>
+
+                    <div class="properties_div">
+                        <div class="property_div_class"> 
+                            <div class="property_key"> <p>City</p></div>
+                            <div class="property_value"> <h6>{{ x.property_city }}</h6></div> 
+                        </div>
+                    </div>
+
+                    <div class="properties_div">
+                        <div class="property_div_class"> 
+                            <div class="property_key"> <p>State</p></div>
+                            <div class="property_value"> <h6>{{ x.property_state }}</h6></div> 
+                        </div>
+                    </div>
+                        
+                    <div class="properties_div">
+                        <div class="property_div_class"> 
+                            <div class="property_key"> <p>PinCode</p></div>
+                            <div class="property_value"> <h6>{{ x.property_pincode }}</h6></div> 
+                        </div>
+                    </div>
+
+                    <div class="properties_div">
+                        <div class="property_div_class"> 
+                            <div class="property_key"> <p>House Type</p></div>
+                            <div class="property_value"> <h6>{{ x.rooms }}</h6></div> 
+                        </div>
+                    </div>   
+
+                    <div class="properties_div">
+                        <div class="property_div_class"> 
+                            <div class="property_key"> <p>Furnished</p></div>
+                            <div class="property_value"> <h6>{{ x.furnished_or_semi }}</h6></div> 
+                        </div>
+                    </div>   
+
+                    <div class="properties_div">
+                        <div class="property_div_class"> 
+                            <div class="property_key"> <p>Floor No</p></div>
+                            <div class="property_value"> <h6>{{ x.property_floor }}</h6></div> 
+                        </div>
+                    </div>
+                    
+                    <div class="properties_div">
+                        <div class="property_div_class"> 
+                            <div class="property_key"> <p>Area in Sqft</p></div>
+                            <div class="property_value"> <h6>{{ x.house_area }}</h6></div> 
+                        </div>
+                    </div>
+                    
+                    <div class="properties_div">
+                        <div class="property_div_class"> 
+                            <div class="property_key"> <p>Parking</p></div>
+                            <div class="property_value"> <h6>{{ x.parking }}</h6></div> 
+                        </div>
+                    </div>    
+
+
+                        
+                    {% endfor %}
+
+
+            </div>
+        </div>
+
+        <div id="house_appliances_product_pg">
+            <h3 style="text-align: center;">House Appliances</h3>
+            <div id="house_appliances_div">            
+                {% for x in property_house_appliance %}
+                    <div class="appliances_div">
+                        <div class="appliance_div_class"> 
+                        <div class="appliance_header_div"> <p>TV</p></div>
+                        <div class="applicance_condition_div"> <h6>{% if x.appliance_TV %}<b>&#10003;</b>{% else %}&#10008;{% endif %}</h6></div> 
+                        </div>
+
+                        <div class="appliance_div_class">
+                            <div class="appliance_header_div"><p>Fridge</p></div>
+                        <div class="applicance_condition_div"> <h6>{% if x.appliance_Fridge %}<b>&#10003;</b>{% else %}&#10008;{% endif %}</h6></div>   
+                        </div>
+
+                        <div class="appliance_div_class"> 
+                        <div class="appliance_header_div"> <p>Sofa</p></div>
+                        <div class="applicance_condition_div"> <h6>{% if x.appliance_sofa %}<b>&#10003;</b>{% else %}&#10008;{% endif %}</h6></div>  
+                        </div>
+
+                        <div class="appliance_div_class">
+                            <div class="appliance_header_div"><p>Bed</p></div>
+                        <div class="applicance_condition_div"> <h6>{% if x.appliance_bed %}<b>&#10003;</b>{% else %}&#10008;{% endif %}</h6></div>   
+                        </div>
+
+                        <div class="appliance_div_class">
+                            <div class="appliance_header_div"><p>Dresser</p></div>
+                        <div class="applicance_condition_div"> <h6>{% if x.appliance_dresser %}<b>&#10003;</b>{% else %}&#10008;{% endif %}</h6></div>   
+                        </div>
+
+                        <div class="appliance_div_class"> 
+                        <div class="appliance_header_div"> <p>AC</p></div>
+                        <div class="applicance_condition_div"> <h6>{% if x.appliance_AC %}<b>&#10003;</b>{% else %}&#10008;{% endif %}</h6></div>  
+                        </div>
+
+                    </div>
+                    <div class="appliances_div">
+                        <div class="appliance_div_class">
+                            <div class="appliance_header_div"></class><p>Washing Machine</p></div>
+                        <div class="applicance_condition_div"> <h6>{% if x.appliance_washing_machine %}<b>&#10003;</b>{% else %}&#10008;{% endif %}</h6></div>   
+                        </div>
+
+                        <div class="appliance_div_class">
+                            <div class="appliance_header_div"><p>Water Heater</p></div>
+                        <div class="applicance_condition_div"> <h6>{% if x.appliance_water_heaters %}<b>&#10003;</b>{% else %}&#10008;{% endif %}</h6></div>   
+                        </div>
+
+                        <div class="appliance_div_class">
+                            <div class="appliance_header_div"><p>Water Purifier</p></div>
+                        <div class="applicance_condition_div"> <h6>{% if x.appliance_water_purifier %}<b>&#10003;</b>{% else %}&#10008;{% endif %}</h6></div>   
+                        </div>
+
+                        <div class="appliance_div_class">
+                            <div class="appliance_header_div"><p>Fan</p></div>
+                        <div class="applicance_condition_div"> <h6>{% if x.appliance_fans %}<b>&#10003;</b>{% else %}&#10008;{% endif %}</h6></div>   
+                        </div>
+
+                        <div class="appliance_div_class"> 
+                        <div class="appliance_header_div"> <p >Tube Lights</p></div>
+                        <div class="applicance_condition_div"> <h6>{% if x.appliance_tubelights %}<b>&#10003;</b>{% else %}&#10008;{% endif %}</h6></div>   
+                        </div>
+
+                        <div class="appliance_div_class">
+                            <div class="appliance_header_div"><p>Power Backup</p></div>
+                        <div class="applicance_condition_div"> <h6>{% if x.appliance_Inventers %}<b>&#10003;</b>{% else %}&#10008;{% endif %}</h6></div>   
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+
+
+</div>
+
+
+    <!-- Product light-screen integration -->
+    
+        
+    <div class="light_screen_div">
+        <button id="light_screen_cross_btn">X</button>
+        <div>
+            <a onclick="{change1()}"><img  id='left_arrow_light_screen'src="/static/left_arrow.png" alt=""></a>
+        </div>
+        <img id="property_img_banner_light_screen" src='' alt="..." >
+        <div>
+            <a  onclick="{change1()}"><img id="right_arrow_light_screen" src="/static/right_arrow.png" alt=""></a> 
+        </div>
+        <div id="sub_div_light_screen">
+            {% for x in property_img %}
+            <img id="sub_img_light_screen" src="/static/media/{{x}}" alt="">
+            {% endfor %}
+        </div>
+       
+    </div>
+
+    <!-- limit_over_pop_up -->
+
+    <div class="limit_over_pop_up">
+        <div id="inner_div_limit_over_pop_up">
+            <h4 style="color: red;" class="limit_over_pop_up_font_size">Oops, Limit-Over !!</h4>
+            <h4 class="limit_over_pop_up_font_size">Enroll Membership To View Unlimited <b>Contact's</b></h4>
+        </div>
+    </div>
+
+
+    <script>
+       
+        store_ref={{property_img|safe}};
+        
+        var b=0;
+        console.log(b)
+        property_img_banner.src=`/static/media/${store_ref[b]}`;
+        property_img_banner_light_screen.src=`/static/media/${store_ref[b]}`;
+         function change2(){
+            b++;
+            if (b<store_ref.length){
+                
+                property_img_banner.src=`/static/media/${store_ref[b]}`;
+                
+            }
+            else{
+                b=0;
+                property_img_banner.src=`/static/media/${store_ref[b]}`;
+            }
+
+         }
+
+         function change3(){
+
+            if (b>0){
+            b--;
+            property_img_banner.src=`/static/media/${store_ref[b]}`;
+            
+  
+            }
+            else{
+                b=store_ref.length-1;
+                property_img_banner.src=`/static/media/${store_ref[b]}`;
+            }
+    
+         }
+
+
+        function open_image_in_default_win(){
+            console.log("Clicked On Img");
+            document.querySelector(".product_pg_main_div").classList.add('active');
+            document.querySelector(".light_screen_div").classList.add("active");
+            document.getElementById("product_price_details").style="opacity: 20%;";
+            document.getElementById("div1").style="opacity: 20%;";
+            document.getElementById("footer_for_all_pg").style="opacity: 0%;pointer-events: none;";            
+        }
+        document.querySelector("#light_screen_cross_btn").addEventListener("click",function(){
+            document.querySelector(".product_pg_main_div").classList.remove('active');
+            document.querySelector(".light_screen_div").classList.remove("active");
+            document.getElementById("product_price_details").style="";
+            document.getElementById("div1").style="";
+            document.getElementById("footer_for_all_pg").style="";
+            
+        })
+
+        function change1(){
+            b++;
+            if (b<store_ref.length){
+                
+                property_img_banner_light_screen.src=`/static/media/${store_ref[b]}`;
+                
+            }
+            else{
+                b=0;
+                property_img_banner_light_screen.src=`/static/media/${store_ref[b]}`;
+            }
+
+         }
+        function limit_over(){
+            document.querySelector(".limit_over_pop_up").classList.remove('active')
+
+            }
+        if ("{{limit_over_pop_up|safe}}"=="True")
+        {
+            document.querySelector(".limit_over_pop_up").classList.add('active')
+            setInterval(limit_over,8000);
+   
+        }
+
+
+
+
+         </script>
+
+</body>
+{% include 'footer.html' %}

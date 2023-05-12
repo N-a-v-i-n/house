@@ -1,0 +1,81 @@
+{% include 'header.html' %}
+<body>
+
+<div id="favour_main_div">
+    {% if data == False %}
+    <div id="empty_page_div">
+        <img id="No_data_image" src="/static/no_data_image.jpg" alt=".... NO DATA ....">
+    </div>
+    {% endif %}
+    
+    {% for i in data.values %}
+
+    <div id="inner_div1">
+        <div>
+            <a href="/product/{{i.2}}">
+            <img id="inner_div1_img" src="/static/media/{{i.0}}" alt="...">
+            </a>
+        </div>
+        <div>
+            <h3 id="inner_div1_h3">₹ {{i.1.0}}</h3>
+            <h6 id="inner_div1_h6">{{i.1.1}}, </h6>
+            <h6 id="inner_div2_h6">{{i.1.2}}</h6>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+<style>
+    #empty_page_div{
+        /* border: 1px solid black; */
+        width: 100%;
+        text-align: center;
+    }
+  
+    #No_data_image{
+        height: 100%;
+        width: 50%;
+    }
+    @media only screen and (max-width:600px) {
+    #inner_div1 {
+        height: 17%;
+        width: 100%;
+        display: flex;
+    }
+
+    #inner_div1_img {
+        width: 130px;
+    }
+    #favour_main_div {
+        margin: 0px;
+    }
+    #No_data_image{
+        height: 50%;
+        width: 100%;
+    }
+    #inner_div1_h3 {
+    /* border: 2px solid green; */
+        width: 100%;
+        margin-left: 10%;
+        margin-top: 20px;
+    }
+    #inner_div1_h6 {
+    /* border: 2px solid green; */
+        width: 100%;
+        margin-left: 25%;
+        margin-top: 2%;
+    }
+    #inner_div2_h6 {
+    /* border: 2px solid green; */
+        width: 100%;
+        margin-left: 25%;
+        margin-top: 2%;
+    }
+}
+</style>
+
+
+</body>
+
+{% include 'footer.html' %}

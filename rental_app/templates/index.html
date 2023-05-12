@@ -1,0 +1,790 @@
+{% include 'header.html' %}
+<body style="  background-color: white;">
+
+  <!-- Script to chech user Log_out -->
+  <script>
+    envt_type = "{{envt_type|safe}}"
+
+  // header position --> inherit
+  document.getElementById("div1").style="position:fixed;"
+
+   var user_logout= "{{Log_out_success|safe}}"
+   if (user_logout == "True"){
+    window.location.href=""   
+   }
+ 
+  </script>
+
+  <!-- homepage popup -->
+  {% if user_status != True %}
+  <div class="home_pg_popup">
+    <button id="home_pg_banner_close_btn" onclick="{close_btn_clicked()}" >X</button>
+    
+    <img id="img_home_pg_popup"   src= "" alt="...">
+  </div>
+  {% endif %}
+
+  <script>
+    window_screen_width=window.innerWidth
+    if (window_screen_width < 600){
+      document.getElementById('img_home_pg_popup').src="/static/home_pg_banners/mobile_0.jpg"
+    }else{
+      document.getElementById('img_home_pg_popup').src="/static/home_pg_banners/0.jpg"
+    }
+
+   
+  </script>
+
+  <script>
+    function close_btn_clicked(){
+      var pop_up_close=document.querySelector(".home_pg_popup")
+    pop_up_close.classList.add("active")
+    }
+    
+  </script>
+
+  <div id="homepage_main_banner"> 
+    <div id="para_marquee">
+      <marquee behavior="" direction="">Welcome to Rent your stay... Choose your Stay hassle free !!!</marquee>
+    </div>
+
+    <div id="homepage_main_banner_image_div">
+      
+      <img id="homepage_main_banner_image"src="" alt=" banner">
+
+      <script>
+         // for home pg banners
+         console.log("window_Scree_size : ",window_screen_width)
+        if (window_screen_width <= 850){
+          document.getElementById('homepage_main_banner_image').src="/static/home_pg_banners/595-375.png"
+          
+
+        }else{
+          document.getElementById('homepage_main_banner_image').src="/static/home_pg_banners/home_0.png"
+        }
+      </script>
+
+
+    </div>
+
+  </div>
+
+
+  <div id="main_div_homepage">
+    <div>
+      <br>
+    </div>
+    <div id="div3">
+      
+      {% for x in area_amt  %}
+      
+      <a style="text-decoration: none;" {% if user_status %} href="/product/{{x.2}}" {% else %} onclick="{login_popup()}" {% endif %}>
+
+        <div id="a_property_img1">
+          
+          <form id="heart_shape_like_btn_in_home_pg" action="" method="post"  >
+            {% csrf_token %}
+            <input type="number" value="{{x.2}}" name="product-ID" hidden> 
+            {% if x.2 in user_liked_data %}
+            <button class="liked_btn_home"  disabled type="submit">&#9825;</button>
+            {% elif user_liked_data == False %}
+            <!-- if false not show like btn.. because user is not in logged state -->
+            <!-- <button id="liked_btn_home" style="border: none; background-color: white; font-size: x-large; border-radius: 50%;"  type="submit"> &#9825; </button> -->
+            {% else %}
+            <button class="liked_btn_home" type="submit"> &#9825; </button>
+            {% endif %}
+          </form>
+        
+
+          <img id='property_img' src=/static{{x.1}} class="img-thumbnail" alt="..." >
+          <span id="a_property_img2_0">{{x.0.4}}, {{x.0.5}}</span>
+          <span id="a_property_img2">{{x.0.3}}, {{x.0.1}}</span>
+          <span id="a_property_img3">₹{{x.0.0}}</span>
+          <span id="a_property_like_count" >{{x.0.2}}</span>
+
+        </div>
+      </a>
+      
+      {% endfor %} 
+      
+    </div>
+    
+    <div class="data_not_found"  >
+      <h3>Data Not Found</h3>
+    </div>
+
+    <!-- Pagination FLow Required each page 40-property to be visible -->
+    <div id="pagination_pg">
+      <nav aria-label="...">
+        <ul class="pagination pagination_pg">
+          {% for x in No_of_pages_needed %}
+
+          <li class="page-item" aria-current="page" >
+
+            <a class="page-link" href="{{x}}">{{x}}</a>
+          
+          </li>
+
+          {% endfor %}
+
+        </ul>
+      </nav>
+    </div>
+
+        <!-- Why Rent Your Stay ? -->
+
+        <div id="why_your_stay">
+
+          <!-- <div id="inner_banner_div1">
+            <img id="company_logo_banner_img" src="/static/imp_website_img/company_logo_with_name.png" alt="image ....">
+          </div> -->
+          <div id="inner_banner_div2">
+              <div id="inner_banner_div2_1" > 
+                  <h2 id="header_why_rent_your_stay">BENEFITS OF USING RENTYOURSTAY.IN</h2>
+              </div>
+              <div id="inner_banner_div2_2">
+                <ul >
+                  <li class="line_height" > EVERY 60-DAYS, 3 ADS ARE FREE FOR PROPERTY OWNERS </li>
+                  <li class="line_height" > BROKER-FREE PLATFORM SAVES TIME AND MONEY </li>
+                  <li class="line_height" > EASY PROPERTY NOTIFICATIONS FOR TENANTS AND PROPERTY OWNERS </li>
+                  <li class="line_height" > ONE FREE BRANDING FOR EVERY SUBSCRIBTIONS </li>
+                  <li class="line_height" > LOW COST PLAN SUBSCRIBTIONS FOR AD POSTING </li>
+
+                </ul>
+              </div>
+              <div id="inner_banner_div2_3">
+                <button id="inner_banner_div2_3_btn"> EXPLORE NOW </button>
+              </div>
+    
+          </div>
+
+        </div>
+
+        {% include 'footer.html' %}
+
+
+</div>
+
+<div id="left_hover_popup_div">
+  <h6 id="btn_filter">
+   Filter
+  </h6>
+</div>
+
+<!-- filtering data option -->
+
+  <div class="filtering_products">
+
+    <div>
+      <br>
+      <br>
+      <br>
+    </div>
+
+   
+
+    <form action="" method="post" id="filtering_form_id" style="cursor:pointer;">
+      {% csrf_token %}
+    <div class="filter_form_element">
+      <select class="select_class" onchange="{state_selected_fun(id)}" name="state_selected" id="state_selected" >
+        <option value="">State</option>
+        <option value="Andhra Pradesh">Andhra Pradesh</option>
+        <option value="" disabled>Comming Soon</option>
+
+        
+      </select>
+
+    </div> 
+    <div class="filter_form_element">
+   
+      <select class="select_class" onchange="{check_selected()}" name="select_cities" id="select_cities">
+        <option value="">City</option>
+      </select>
+
+      <div id="cites_div">
+      </div>
+
+    </div>
+
+    <div class="filter_form_element">
+   
+      <select class="select_class" onchange="{check_selected()}" name="select_rooms" id="select_rooms">
+        <option value="">Rooms </option>
+        <option value="1room">1room</option>
+        <option value="1rk">1rk</option>
+        <option value="1bhk">1bhk</option>
+        <option value="2bhk">2bhk</option>
+        <option value="3bhk">3bhk</option>
+        <option value="Villa">Villa</option>
+
+
+      </select>
+
+      <div id="cites_div">
+      </div>
+
+    </div>
+
+    <div class="filter_form_element">
+   
+      <select class="select_class" onchange="{check_selected()}" name="select_furnish" id="select_furnish">
+        <option value="">Furnishing</option>
+        <option value="Semi-Furnished">Semi-Furnished</option>
+        <option value="Furnished">Furnished</option>
+      </select>
+
+      <div id="cites_div">
+      </div>
+
+    </div>
+
+    <div class="radio_filter_class" onclick="{radio_btn_clicking('input_low_to_high',id)}" id="radio_low_to_high">
+      <table>
+        <tr>
+          <th>
+            <h5>Low to High</h5>
+          </th>
+          <th>
+            <input class="input_filter_class" onclick="{other_price_clicked(value)}" type="radio" value="0" name="max_min_radio" id="input_low_to_high" >
+          </th>
+          
+        </tr>
+      </table>
+      
+      
+    </div>
+    <div class="radio_filter_class" onclick="{radio_btn_clicking('input_high_to_low',id)}" id="radio_high_to_low">
+
+      <table>
+        <tr>
+          <th>
+            <h5>High to Low</h5>
+          </th>
+
+          <th>
+            <input onclick="{other_price_clicked(value)}" type="radio" value="1" name="max_min_radio" id="input_high_to_low" >
+          </th>
+         
+        </tr>
+
+      </table>
+      
+
+    </div>
+
+    <div class="radio_filter_class" onclick="{radio_btn_clicking('other_price',id)}" id="radio_other_btn">
+
+      <table>
+        <tr>
+          <th>
+            <h5>Other Price</h5>
+          </th>
+
+          <th>
+            <input type="radio" onclick="{other_price_clicked(value)}" value="Others" name="max_min_radio" id="other_price" >
+          </th>
+     
+        </tr>
+
+      </table>
+
+    </div>
+
+
+    <script>
+       
+      function radio_btn_clicking(input_id,id){
+
+        document.getElementById("radio_high_to_low").style=""
+        document.getElementById("radio_low_to_high").style=""
+        document.getElementById("radio_other_btn").style=""
+        
+          document.getElementById(id).style="background-color:darkturquoise;" 
+          document.getElementById(input_id).click()
+
+      }
+
+    </script>
+
+
+    <div class="filter_form_element" id="other_price_click" style="display: none;">
+
+      <table>
+        <tr>
+          <th>
+            <input class="select_class" type="number" placeholder="Min Range" name="Min_Range" id="Min_Range"  >
+          </th>
+        </tr>
+      </table>
+
+      <table>
+        <tr>
+          <th>
+            <input class="select_class" type="number" placeholder="Max Range" name="Max_Range" id="Max_Range"  >
+          </th>
+
+        </tr>
+      </table>
+
+    </div>
+
+    <div class="filter_form_element" style="text-align: center;">
+      <button class="from_filter_submit_reset_btn" type="submit">Filter</button>
+      <button  class="from_filter_submit_reset_btn" type="reset">Reset</button>
+
+    </div>
+
+  </form>
+
+  </div>
+
+  <script>
+  // State wise cities
+
+  var ap=[
+      "VISAKHAPATNAM","VIZIANAGARAM","EAST GODAVARI","GUNTUR","YSR KADAPA","KURNOOL","KRISHNA","NELLORE","ANANTHAPUR","CHITTOOR","SRIKAKULAM","VISHAKAPATNAM","WEST GODAVARI","ANANTHAPURAM","PENUKONDA","URAVAKONDA","BELUGUPPA","BATHALAPALLI","BUKKARAYASAMUDRAM","KOTHACHERUVU","HINDUPUR","RAPTHADU","SOMANDEPALLI","GARLADENNE","GORANTLA","BUKKAPATNAM","VAJRAKARUR","CHILAMATHURU","VIDAPANAKAL","CHENNEKOTHAPALLI","DHARMAVARAMU","KUDERU","LEPAKSHI","KANAGANIPALLE","PUTTAPARTHY","SINGANAMALA","RAJAVOMMANGI","PHIRANGIPURAM","PEDAKURAPADU","VEMURU","THULLUR","SATTENAPALLE","BHATTIPROLU","PEDAKAKANI","TSUNDUR","AMARAVATHI","ATCHAMPET","AMRUTHALUR","KROSURU","KOLLUR","VATTICHERUKURU","TENALI","KOLLIPARA","PONNUR","MANGALAGIRI","TADIKONDA","CHEBROLU","DUGGIRALA","TADEPALLE","MEDIKONDURU","EDLAPADU","PRATHIPADU","PEDANANDIPADU","MUPPALLA","NADENDLA","TADEPALLI","BAPULAPADU","PAMARRU","AGIRIPALLE","NANDIGAMA","PAMIDIMUKKALA","GANNAVARAM","VUYYURU","GUDIVADA","VEERULLAPADU","VATSAVAI","VIJAYAWADA (RURAL)","UNGUTURU","NANDIVADA","GUDLAVALLERU","PENUGANCHIPROLU","JAGGAYYAPETA","NUZVID","MOPIDEVI","PEDAPARUPUDI","G.KONDURU","MOVVA","KANCHIKACHERLA","GHANTASALA",
+      "CHANDARLAPADU","THOTLAVALLURU","KANKIPADU","CHALLAPALLE","MYLAVARAM","IBRAHIMPATNAM","PENAMALURU","MOPIDEVI","VIJAYAWADA RURAL","SARAVAKOTA","VEERAGHATTAM","CHEEDIKADA","ARAKU VALLEY","G.MADUGULA","GANTYADA","KURUPAM","CHINTALAPUDI","THONDANGI","RAMACHANDRAPURAM","TUNI","KARAPA","RAVULAPALEM","THALLAREVU","PITHAPURAM","ANAPARTHI","ATREYAPURAM","PEDDAPURAM","KARAPA","PEDAPUDI","JAGGAMPETA","BIKKAVOLU","THONDANGI","KIRLAMPUDI","RAJANAGARAM","SEETHANAGARAM","SAMALKOT","GANDEPALLI","KORUKONDA","GOLLAPROLU","KAKINADA","MANDAPETA","TALLAREVU","KADIAM","RAJAMAHENDRAVARAM  RURAL","RANGAMPETA","U.KOTHAPALLI","SANKAVARAM","YELESWARAM","VINUKONDA","NUZENDLA","RAYACHOTI (PART)","PORUMAMILLA (PART)","CHAPAD (FULL)","JAMMALAMADUGU (PART)","PULLAMPETA (PART)","LAKKIREDDIPALLE (PART)","KODUR (FULL)","RAJAMPETA (PART)","VALLUR (PART)","S.MYDUKUR (PART)","DUVVUR (PART)","CHINTAKOMMADINNE (FULL)","RAMAPURAM ( FULL)","CHENNUR (FULL)","KHAJIPET (FULL)","MUDDANUR (PART)","KONDAPURAM (PART)","KAMALAPURAM (PART)","B.KODUR (PART)","YERRAGUNTLA (PART)","RAJUPALEM (PART)","OBULAVARIPALLE (PART)","VONTIMITTA (PART)","PRODDATUR (PART)","BRAHMAMGARIMATTAM (PART)",
+      "SAMBEPALLI (FULL)","MYLAVARAM (PART)","BUDWEL (PART)","GOPAVARAM (PART)","THONDUR (PART)","SIDHOUT (PART)","CHITVEL (PART)","KALASAPADU (PART)","NANDALUR (PART)","PULIVENDULA (PART)","SRI AVADHUTA KASINAYANA  (PART)","VEMULA (PART)","KALLUR","PANYAM","BETAMCHERLA","NANDYAL","VELDURTHI","ORVAKAL","GUDUR","DHONE","VELDURTHI","MACHILLIPATNAM","PEDANA","SATYAVADU","VARADIAH PALEM","SULLURPET","NELLORE","TADA","DORAVARISATRAM","BOGOLE","KODAVALURU","MUTHUKUR","DAGADARTHI","KAVALI","VENKATACHALAM","MANUGOLU","NAIDUPETA","ALLURU","CHILAKUR","T.P.GUDUR","KOVURU","JALADANKI","OJILI","THONDAGI","U KOTHAPALLI","KAKINADA RURAL","ATCHUTAPURAM","RAMBILLI","NAKKAPALLI","PARAWADA","S RAYAVARAM","PAYAKARAOPETA","DARSI","ADDANKI","PODILI","JANAKAVARAM PANGULURU","KOMAROLU","KOTHAPATNAM","KURICHEDU","KONAKANAMITLA","GIDDALURU","NAGULUPPALAPADU","TANGUTURU","CUMBUM","MADDIPADU","RACHERLA","DONAKONDA","ULAVAPADU","ARDHAVEEDU","KANIGIRI","BALLIKURAVA","BESTHAVARIPETA","SINGARAYAKONDA","KORISAPADU","MARTUR","MARKAPUR","CHIMAKURTHI","ONGOLE","TARLUPADU","GUDLURU","PAMURU","CHINAGANJAM","CHIRALA","SANTHANUTALAPADU","SANTHAMAGULURU","ZARUGUMALLI","VETAPALEM",
+      "KANDUKURU","VELIGANDLA","PUTTAPARTHI","RENIGUNTA","CHANDRAGIRI","TIRUPATHI( U )","VADAMALAPETA","SRI KALAHASTI","YERPEDU","TIRUPATHI RURAL","PUTTUR","ETCHERLA","G.SIGADAM","LAVERU","RAJAM","RANASTALAM","AMUDALAVALASA","PONDURU","GARA","POLAKI","NARASANNAPETA","KASIMKOTA","RAMBILI","PADMANABHAM","YELAMANCHILI","S RAYAVARAM","ANANDAPAURAM","MUNAGAPAKA","BHOGAPURAM","DENKADA","CHEEPURUPALI","JAMI","PUSAPATIREGA","NELLIMARLA","S.KOTA","VEPADA","LAKKAVARAPUKOTA","S.KOTA.","KOTHAVALASA","VIZIAYANAGRAM","ANAKAPALLE","BHEEMUNIPATNAM","SABBAVARAM","ANANDAPURAM","PARAVADA","PENDURTHI","RAMBILLI","BONDAPALLE","GURLA","GARIVIDI","GAJAPATHINAGARAM","CHEEPURUPALLE","UNGUTURU","AKIVIDU (PART)","ACHANTA","BHIMADOLE","PALACOLE","GANAPAVARAM","PERAVALI","DENDULURU","PENTAPADU","PENUMANTRA","PEDAVEGI","JANGAREDDYGUDEM (PART)","PEDAPADU","VEERAVASARAM","BHIMAVARAM(PART)","ATTILI","KOVVUR(PART)","T P GUDEM","NIDADAVOLE(PART)","CHAGALLU(PART)","ELURU","UNDI(PART)","PENUGONDA","UNDRAJAVARAM","NARASAPUR","DWARAKATIRUMALA","TANUKU","IRAGAVARAM","PALACODERU","PODURU","MOGALTHUR (PART)","KAMAVARAPUKOTA","KALLA(PART)","T.NARASAPURAM"
+  ]
+
+  var states=new Object()
+  states={
+    'andhra pradesh':ap
+  }
+
+
+  function state_selected_fun(id){
+    get_data=document.getElementById(id).value
+    state_toLower=get_data.toLowerCase()
+    cities=states[state_toLower]
+    other_city=document.createElement('option')
+    other_city.innerHTML='Others'
+    document.getElementById("select_cities").appendChild(other_city)
+
+    for(var a=0;a<cities.length;a++){
+
+    opt=document.createElement('option')
+    opt.value=cities[a]
+    opt.innerHTML=cities[a]
+    document.getElementById("select_cities").appendChild(opt)
+    }
+
+  }
+
+  function check_selected(){
+          others_selected=document.getElementById("select_cities").value
+          if (others_selected == 'Others') {
+          console.log("others_selected : ",others_selected)
+          br_element=document.createElement("br")
+          input_element=document.createElement("input")
+          input_element.placeholder='Enter City'
+          input_element.required="required"
+          input_element.type="text"
+          input_element.name="city_others_entered"
+          input_element.classList.add("select_class")
+          document.getElementById("cites_div").appendChild(br_element)
+          document.getElementById("cites_div").appendChild(input_element)
+
+        }else {
+          document.getElementById("cites_div").removeChild(br_element)
+          document.getElementById("cites_div").removeChild(input_element)
+        }
+        }     
+
+function other_price_clicked(val){
+        if (val == "Others"){
+          document.getElementById("other_price_click").style="display:auto"
+          document.getElementById("Min_Range").required="required"
+          document.getElementById("Max_Range").required="required"
+
+        }else{
+          document.getElementById("other_price_click").style="display:none"
+          document.getElementById("Min_Range").required=""
+          document.getElementById("Max_Range").required=""
+
+        }
+      }
+
+  </script>
+
+ 
+  <script>
+    document.querySelector("#left_hover_popup_div").addEventListener("mouseover",function(){
+      console.log("hovered");
+      document.querySelector(".filtering_products").classList.add("active")
+    })
+    document.querySelector("#main_div_homepage").addEventListener("mouseover",function(){
+      document.querySelector(".filtering_products").classList.remove("active")
+      document.querySelector("#filtering_form_id").reset()
+
+    })
+    document.querySelector("#homepage_main_banner").addEventListener("mouseover",function(){
+    document.querySelector(".filtering_products").classList.remove("active")
+    document.querySelector("#filtering_form_id").reset()
+
+    })
+
+  </script>
+
+    <!-- Login PopUp Integrations -->
+    <div class="login_popup_div_integration">
+
+
+        <div class="div_login-form-elements" id="login_form_div">
+      
+          <form  method="post" >
+            {% csrf_token %}
+            <div id="remove_popup_btn_login">
+              <!-- &#10062; -->
+              <b>X</b>
+            </div>
+            <div class="login-form-elements_title">
+              <h3>Login</h3>
+            </div>
+            <div class="login-form-elements">
+              <input type="email" id="login_email_id" name="login_email_id" class="login_form_input_element"  placeholder="Email" required >
+            </div>
+            <div class="login-form-elements">
+              <input type="password" id="login_email_password" class="login_form_input_element" name="login_email_password" placeholder="Password" required>
+            </div>
+
+            <div id="email_validate" style="margin-left:5%;width: 60%;border: none;outline: none; font-weight: 600;">
+              <p style=" color: red;">Email or Password is Wrong, Please Register !!</p>
+            </div>
+
+
+
+            <div id="sign_in_register_forgot_password_div">
+
+            
+                <div class="login-form-elements">
+                  <button type="submit" id="sign_in_btn_home">SIGN IN</button>
+                </div>
+                <div style="text-align: center; padding-top: 5%;" >
+                  <a id="register_btn" onclick="{register_form()}" type="button">Register</a>
+                </div>
+                <div class="login-form-elements" >
+                  <a href="/login" id="login_forgot_password">Forgot Password</a>
+                </div>
+
+            </div>
+
+          </form>   
+        </div>
+      
+    </div>
+
+
+    <style>
+ 
+    </style>
+
+    <!-- <script>
+      document.getElementById("policy_and_terms_check").style="width: 2%;"
+    </script> -->
+
+
+
+  <!-- SignUp integrations via PoP-UP -->
+  <div class="dev_signup_form">
+
+    <div id="remove_popup_btn_signup">
+      <b>X</b>
+    </div>
+
+    <div id="sign_up_left_div">
+
+
+        <div id="benefits_of_rys_header" > 
+          <h3 id="">BENEFITS OF USING RENTYOURSTAY.IN</h3>
+        </div>
+        <div id="benefits_of_rys_para">
+          <ul >
+            <li class="line_height" > EVERY 60-DAYS, 3 ADS ARE FREE FOR PROPERTY OWNERS </li>
+            <li class="line_height" > BROKER-FREE PLATFORM SAVES TIME AND MONEY </li>
+            <li class="line_height" > EASY PROPERTY NOTIFICATIONS FOR TENANTS & OWNERS </li>
+            <li class="line_height" > ONE FREE BRANDING FOR EVERY SUBSCRIBTIONS </li>
+            <li class="line_height" > LOW COST PLAN SUBSCRIBTIONS FOR AD POSTING </li>
+
+          </ul>
+        </div>
+        <div id="">
+          <button id="benefits_of_rys_explore"> EXPLORE NOW </button>
+        </div>
+
+      
+    </div>
+
+    <div id="sign_up_rite_div">
+      
+      <form action="" method="post">
+      
+        <div class="signup-form-elements_title">
+          <h3>Register</h3>
+        </div>
+          {% csrf_token %}
+          <div class="signup_form_popup">
+            <input autocomplete="off" type="text" class="sign_up_input" id="first_n" onkeyup="{validate_creds(id,type)}"  name="first_name" placeholder="First Name"required>
+  
+          </div>
+          <div class="signup_form_popup">
+            <input autocomplete="off" type="text" class="sign_up_input" id="last_n" onkeyup="{validate_creds(id,type)}"  name="last_name" placeholder="Last Name" required>
+  
+          </div>
+          <div class="signup_form_popup">
+            <input  type="email" class="sign_up_input" id="email_id"   name="email_id" onkeyup="{validate_creds(id,type)}" placeholder="EMail-ID"required>
+  
+          </div>
+          <div class="signup_form_popup">
+            <input autocomplete="off" onkeyup="{password_validations(id)}" type="password" class="sign_up_input" id="login_password"   name="login_email_password" placeholder="Password" required>
+  
+          </div>
+          <div class="signup_form_popup">
+            <input onkeyup="{password_validations()}" class="sign_up_input" type="text" name="confimr_password" placeholder="Confirm Password" id="confimr_password">
+        </div>
+
+        <div class="signup_form_popup">
+          <input  type="number" onkeyup="{validate_creds(id,type)}" class="sign_up_input" id="mobile_no"   name="mobile_no" placeholder="Mobile No" required>
+
+        </div>
+
+        <div class="terms_and_policy_div">
+
+          <strong>By continuing, you agree to RentYourStay's <a class="terms_policy_a" href="terms&conditions">Terms of Use</a> and <a class="terms_policy_a" href="privacy-policy">Privacy Policy</a> .</strong>
+
+        </div>
+
+
+        <div class="signup_form_popup">
+          <button type="submit" id="register_submit_btm">SIGN UP</button>
+        </div>
+
+        <div id="User_exixtance_error" style="display:none; margin-left:4%;width: 60%;background: content-box;border: none;color: red;outline: none; font-weight: 600;">
+          <p style="color:red;">User Already Exist, Please Login !!</p>
+       </div>
+    </form>
+  </div>
+</div>
+  
+
+
+
+
+  
+
+  
+      <script>
+          function password_validations(){
+          var new_password=document.getElementById("login_password").value
+          var confimr_password=document.getElementById("confimr_password").value
+
+          if(new_password.toString() != confimr_password.toString()){ 
+              console.log(" enter ",new_password)
+              console.log(" ed ",confimr_password)
+              document.getElementById("confimr_password").style="outline:3px solid red"
+              submit=document.getElementById("register_submit_btm")
+              submit.disabled="disabled"
+              submit.style="background-color:#616161;cursor: not-allowed;"
+          }else{
+              document.getElementById("confimr_password").style=""
+              submit=document.getElementById("register_submit_btm")
+              submit.disabled=""
+              submit.style=""
+
+          }
+       }
+
+      </script>
+
+
+
+
+
+
+
+
+<style>
+  #register_submit_btm{
+    font-weight: 600;outline: none; border: none; border-radius: 50px; background-color: royalblue;color: white;padding: 0% 5%;
+  }
+</style>
+
+<script>
+  function validate(content,format){
+             var content_format= new Object()
+             content_format= {
+                 "text":"^[a-zA-Z]+$",
+                 "number":"^[6-9]{1}[0-9]{9}$",
+                 "email":"[a-zA-Z0-9\-\.]+[@][a-zA-Z]+[\.][a-zA-Z]{2,3}",      
+
+             }
+
+             re=new RegExp(content_format[format])
+             
+             result=re.test(content)
+
+             return result
+
+
+             console.log("Result : ",result)
+             
+
+         }
+         
+
+         function validate_creds(id,type){
+             var check=document.getElementById(id).value
+             result=validate(check,type)
+             console.log("op",result)
+             if (check){
+                     if (result){
+                         document.getElementById(id).style=""
+
+                         
+                     }else{
+                         document.getElementById(id).style="outline:3px solid red"
+                       
+                         
+                     }
+             }
+             console.log("check : ",check)
+       
+             id1=document.getElementById("first_n").style.outlineColor
+             id2=document.getElementById("last_n").style.outlineColor
+             id3=document.getElementById("mobile_no").style.outlineColor
+             id4=document.getElementById("email_id").style.outlineColor
+             id5=document.getElementById("confimr_password").style.outlineColor
+
+
+             console.log("id3 :  ",id3,)
+
+             if (id1||id2||id3||id4||id5){
+              console.log("id3  inner:  ",id3)
+             submit=document.getElementById("register_submit_btm")
+             submit.disabled="disabled"
+             submit.style="background-color:#616161;cursor: not-allowed;"
+             }else{
+             submit=document.getElementById("register_submit_btm")
+             submit.disabled=""
+             submit.style=""
+             }
+
+         }
+</script>
+
+
+<style>
+  ::placeholder{
+  color: black;
+}
+</style>
+
+<script>
+
+
+  function login_popup(){
+    // if ('True' =='True'){
+    document.querySelector(".login_popup_div_integration").classList.add('action');
+    document.getElementById("main_div_homepage").style="opacity: 10%; pointer-events: none;";
+    document.body.style="overflow:hidden;"
+    document.getElementById("homepage_main_banner_image_div").style="background-color:white"
+    document.getElementById("homepage_main_banner_image").style="opacity: 10%; pointer-events: none;"
+    document.getElementById("email_validate").style="display:none;";
+    document.querySelector(".div_login-form-elements").classList.add("active")
+
+
+
+  };
+
+
+  document.querySelector("#remove_popup_btn_login").addEventListener("click",function(){
+    document.getElementById("homepage_main_banner_image_div").style=""
+    document.querySelector(".div_login-form-elements").classList.remove("active")
+    document.querySelector(".dev_signup_form").classList.remove('action');
+    document.getElementById("homepage_main_banner_image").style=""
+    document.body.style=""
+    document.getElementById("main_div_homepage").style="";
+
+    console.log("outer_test")
+
+    function sometime_limit() {
+      document.querySelector(".login_popup_div_integration").classList.remove('action');
+      console.log("clicked sometime_limt")
+
+    }
+
+  window.setTimeout(sometime_limit,1000)
+
+
+  });
+
+  
+  document.querySelector("#remove_popup_btn_signup").addEventListener("click",function(){
+    document.querySelector(".login_popup_div_integration").classList.remove('action');
+    
+    document.body.style=""
+    document.getElementById("homepage_main_banner_image").style=""
+    document.querySelector(".dev_signup_form").classList.remove('action');
+    document.getElementById("main_div_homepage").style="";
+    document.querySelector(".div_login-form-elements").classList.remove("active")
+
+
+
+
+  })
+
+
+  if ("{{user_not_match}}"=='True'){
+    console.log("TRUE");
+    document.querySelector(".div_login-form-elements").classList.add('active');
+    document.querySelector(".login_popup_div_integration").classList.add('action')
+    document.getElementById("main_div_homepage").style="opacity: 20%; pointer-events: none;";
+    document.getElementById("email_validate").style="display:";
+    document.body.style="overflow:hidden;"
+    document.getElementById("homepage_main_banner_image").style="display:none"
+
+  };
+
+  // document.getElementById("registration-form-redirect_element").addEventListener("click",function(){
+  //   document.querySelector(".signup_form_popup").classList.add('action')
+  //});
+  function register_form(){
+    document.querySelector(".login_popup_div_integration").classList.remove('action');
+    document.querySelector(".dev_signup_form").classList.add('action');
+    document.getElementById("User_exixtance_error").style="display:none;";
+  };
+
+  if ("{{user_already_exist}}" == 'True'){
+    document.querySelector(".dev_signup_form").classList.add('action');
+    document.getElementById("User_exixtance_error").style="display:;";
+
+  } 
+
+//  windows screen width finding
+  // var window_width=window.innerWidth
+  // if (window_width<=600){
+  //   document.getElementById('mobile_view_search_and_filter').style="display: inline-flex;";
+
+
+  // }
+
+
+</script>
+
+<Script>
+      if ("{{no_data_found}}" == 'True'){
+        document.querySelector(".data_not_found").classList.add('active');
+        setInterval(remove_popup,1300);
+        function remove_popup(){
+          document.querySelector(".data_not_found").classList.remove('active');
+        };
+        
+
+      }
+
+
+    </Script>
+
+</body>
+

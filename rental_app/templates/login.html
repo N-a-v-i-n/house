@@ -1,0 +1,46 @@
+{% include 'header.html' %}
+<body>
+    {% if is_match_otp == False %}
+    <p>Incorrect OTP</p>
+    {% elif is_match_otp == True %}
+    <form action="/" id="redirecting_to_home_page"></form>
+    {% endif %}
+    <script>
+        document.getElementById('redirecting_to_home_page').submit()
+    </script>
+
+    <div id="user_email_check">
+        <form action="" method="post">
+            {% csrf_token%}
+            <input type="email" id="user_entered_email" name="user_entered_email" placeholder="Enter Email-ID" required>
+            <button type="submit">Send-OTP</button>
+        </form>
+    </div>
+    <div id="user_validate">
+        {% if user_existance == True %}
+        <script>
+                document.getElementById('user_email_check').style="display:none"
+        </script>
+        <p>Otp Sent To Email</p>
+            <div>
+                <form action="" method="post">
+                    {% csrf_token%}
+                    <input type="email" name="otp_email_id" hidden value="{{email_id}}" required>
+                    <input type="text"  name="User_Entered_OTP" placeholder="Enter Otp, Sent on Email" required>
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+        
+        {% elif user_existance == False %}
+            <p>
+                No, User Found Please Sign-up
+            </p>
+
+        {% endif %}
+    </div>  
+
+    
+
+
+</body>
+{% include 'footer.html' %}

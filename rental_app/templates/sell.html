@@ -1,0 +1,463 @@
+{% load static %}
+{% include 'header.html' %}
+
+<body >
+
+    <style>
+        #house_filter_search3,#house_filter_search4{
+            display: none;
+        }
+    </style>
+<div id="header_banner">
+    <!-- slideshow add js in future -->
+    <img id="inner_banner" src="" alt="banner_filed">
+    <!-- <a href="" id="left_arrow2">&#65308;</a>
+    <a href="" id="right_arrow2">&#65310;</a> -->
+</div>
+
+
+<script>
+    envt_type = "{{envt_type|safe}}"
+
+    
+
+width_style_change=window.innerWidth
+console.log(width_style_change)
+if (width_style_change > 1000){
+    console.log("true_Width")
+document.getElementById("messenger_img").style="    margin-top: 33%;   height: 40%; margin-left: 40%;"
+}
+
+if (width_style_change < 500){
+    document.getElementById('inner_banner').src="/static/sell_pg_banners/381-323.png"
+    }
+    else if(width_style_change < 590)
+    {
+      document.getElementById('inner_banner').src="/static/sell_pg_banners/595-375.png"
+
+    }
+    else if(width_style_change < 850)
+    {
+
+        document.getElementById('inner_banner').src="/static/sell_pg_banners/590-850.jpg"
+    document.getElementById("messenger_img").style="margin: 40% 0px 0% 0%;height: 50%;"
+
+    }
+    else if(width_style_change < 1100)
+    {
+
+        document.getElementById('inner_banner').src="/static/sell_pg_banners/590-850.jpg"
+    document.getElementById("messenger_img").style="margin: 40% 0px 0% 0%;height: 50%;"
+
+    }
+    else
+    {
+      document.getElementById('inner_banner').src="/static/sell_pg_banners/1.png"
+    }
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<!-- script for auto scroll banners -->
+<!-- <script>
+    var count_banner=0
+    temp_Count=3 
+    window.setInterval(scroll,5000)
+    function scroll(){
+        if (count_banner == 3){
+                count_banner=0
+            }
+            // console.log("before inc : ",count_banner)   
+            document.getElementById("inner_banner").src="/static/sell_pg_banners/"+ count_banner +".jpeg"
+
+            count_banner++
+            // console.log("after inc : ",count_banner)
+       
+        }
+
+</script> -->
+
+<div id="main_Div_selling_page">
+    <form  id="selling_form" action="" method="post" enctype="multipart/form-data" >
+        {% csrf_token %}
+
+            <div class="form-upload-element">
+                <!-- <div>
+                 <input type="file" class="inner_div_input_elements"  id="user_uploaded_images" name="property_images1"  multiple  accept="image/*" disabled>
+                </div> -->
+
+            <!-- Send Uploaded images to BE after modified-->
+                <div>
+                    <input type="file" onkeyup="validate_creds(id,name)"  class="inner_div_input_elements"  id="user_images" name="temp" multiple accept="image/*" required>
+                </div>
+
+
+            </div>
+
+
+            <div class="form-upload-element" >                
+                    <div >
+                        <input type="text" onkeyup="validate_creds(id,name)"  class="inner_div_input_elements" id="property_owner_name_div" name="property_name" placeholder="Owner Name" required>
+                    </div>
+                    <div >
+                        <!-- <input type="text" name="property_type" placeholder="property type"> -->
+                        <select class="inner_div_select_elements"  name="property_type" required >
+                            <option value="">Property Type</option>
+                            <option value="House">House</option>
+                            <option value="Appartment">Appartment</option>
+                            <option value="PG-Girls">PG-Girls</option>
+                            <option value="PG-Boys">PG-Boys</option>
+                        </select>
+                    </div>
+
+            </div>
+            <div class="form-upload-element">
+
+                <div>
+                    <select class="inner_div_select_elements" name="property_state" id="" required>
+                        <option value="">State</option>
+                        <option value="Andhra Pradesh">Andhra Pradesh</option>
+                        <option value="" disabled>--Others Will Update Soon--</option>
+                    </select>
+
+                </div>
+                
+                <div>
+                    <select class="inner_div_select_elements" name="property_distict" required>
+                        <option>Distict</option>
+                        <option value="Parvathipuram">Parvathipuram </option>
+                        <option value="Srikakulam" >Srikakulam </option>
+                        <option value="Paderu">Paderu </option>
+                        <option value="Visakhapatnam">Visakhapatnam </option>
+                        <option value="Anakapalli">Anakapalli </option>
+                        <option value="Kakinada">Kakinada </option>
+                        <option value="Amalapuram">Amalapuram </option>
+                        <option value="Rajamahendravara">Rajamahendravara </option>
+                        <option value="Bheemavaram">Bheemavaram </option>
+                        <option value="Eluru">Eluru </option>
+                        <option value="Machilipatnam">Machilipatnam </option>
+                        <option value="Vijayawada">Vijayawada </option>
+                        <option value="Guntur">Guntur </option>
+                        <option value="Bapatla">Bapatla </option>
+                        <option value="Narsaraopeta">Narsaraopeta </option>
+                        <option value="Ongole">Ongole </option>
+                        <option value="Nellore">Nellore </option>
+                        <option value="Kurnool">Kurnool </option>
+                        <option value="Nandyal">Nandyal </option>
+                        <option value="Ananthapuram">Ananthapuram </option>
+                        <option value="Puttaparthy">Puttaparthy </option>
+                        <option value="Kadapa">Kadapa </option>
+                        <option value="Rayachoty">Rayachoty </option>
+                        <option value="Chittoor">Chittoor </option>
+                        <option value="Tirupati">Tirupati </option>
+                        <option value="Vizianagaram">Vizianagaram </option>
+                    </select> 
+                </div>
+                <div>
+                    <input type="text" onkeyup="validate_creds(id,name)" class="inner_div_input_elements" id="property_city_div" name="property_city" placeholder="City / Village" required>
+
+                </div>
+                <div>
+                    <input type="number"  onkeyup="validate_creds(id,name)" id="property_pincode_div" class="inner_div_input_elements" name="property_pincode" placeholder="Pin-Code" required>
+
+                </div>
+
+            </div>
+
+            
+            <div class="form-upload-element">
+                <div>
+                                    
+                    <input type="number" class="inner_div_input_elements" id="property_floor_div" onkeyup="validate_creds(id,name)" name="property_floor" placeholder="Floor" required>
+
+                </div>
+                <div>
+                    <select class="inner_div_select_elements" name="property_rooms" id="" required>
+                        <option value="none">Rooms </option>
+                        <option value="1room">1room</option>
+                        <option value="1rk">1rk</option>
+                        <option value="1bhk">1bhk</option>
+                        <option value="2bhk">2bhk</option>
+                        <option value="3bhk">3bhk</option>
+                        <option value="Villa">Villa</option>
+                        
+                    </select>
+
+                </div>
+                <div>
+                    <input type="squareft" onkeyup="validate_creds(id,name)" id="property_squareft_div" class="inner_div_input_elements" name="house_area" placeholder=" Area Square-Feet" required>
+
+                </div>
+                <div>
+                    <select class="inner_div_select_elements" name="furnished_or_semi" id="" required>
+                        <option value="none">Furnishing</option>
+                        <option value="Semi-Furnished">Semi-Furnished</option>
+                        <option value="Furnished">Furnished</option>
+                        <option value="None">None</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="form-upload-element">
+                <div style="text-align: center;margin-left: 5%;">
+                    <b>House Appliances</b>
+                </div>
+                
+                <div id="outer_radio_btns_div">
+
+                    <div class="sub_radio_boxs">
+                        <div  onclick="{checkbox_btn_click('appliance_tv',id)}" id="appliance_tv_div" class="radio_btns"  >
+                            <label for="">TV</label>
+                            <input type="checkbox" name="appliance_tv" onclick="{this.click()}" id="appliance_tv" >
+
+                        </div>
+
+        
+                        <div class="radio_btns" onclick="{checkbox_btn_click('appliance_fridge')}">
+                            <label for="">Fridge</label>
+                            <input type="checkbox" name="appliance_fridge" onclick="{this.click()}" id="appliance_fridge"   >
+                        </div>
+        
+                        <div class="radio_btns" onclick="{checkbox_btn_click('appliance_sofa')}">
+                            <label for="">Sofa</label>
+                            <input type="checkbox" name="appliance_sofa" onclick="{this.click()}" id="appliance_sofa"   >
+                        </div>
+                    </div>
+
+                    <div class="sub_radio_boxs" >
+                        <div class="radio_btns" onclick="{checkbox_btn_click('appliance_bed')}">
+                            <label for="">Bed</label>
+                            <input type="checkbox" name="appliance_bed" onclick="{this.click()}" id="appliance_bed"   >
+                        </div>
+        
+                        <div class="radio_btns" onclick="{checkbox_btn_click('appliance_dresser')}">
+                            <label for="">Dresser</label>
+                            <input type="checkbox" name="appliance_dresser" onclick="{this.click()}" id="appliance_dresser" >
+                        </div>
+        
+                        <div class="radio_btns" onclick="{checkbox_btn_click('appliance_ac')}">
+                            <label for="">AC</label>
+                            <input type="checkbox" name="appliance_ac" onclick="{this.click()}" id="appliance_ac"  >
+                        </div>
+
+                    </div>
+
+                    <div class="sub_radio_boxs" >
+                        <div class="radio_btns"onclick="{checkbox_btn_click('appliance_washing_machine')}">
+                            <label for="">Washing Machine</label>
+                            <input type="checkbox" name="appliance_washing_machine" onclick="{this.click()}" id="appliance_washing_machine"   >
+                        </div>
+        
+                        <div class="radio_btns" onclick="{checkbox_btn_click('appliance_water_heater')}">
+                            <label for="">Water Heater</label>
+                            <input type="checkbox" name="appliance_water_heater" onclick="{this.click()}" id="appliance_water_heater"     >
+                        </div>
+        
+                        <div class="radio_btns" onclick="{checkbox_btn_click('appliance_water_purifier')}">
+                            <label for="">Water Purifier</label>
+                            <input type="checkbox" name="appliance_water_purifier" onclick="{this.click()}" id="appliance_water_purifier"   >
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="sub_radio_boxs" >
+                        <div class="radio_btns" onclick="{checkbox_btn_click('appliance_fan')}">
+                            <label for="">Fans</label>
+                            <input type="checkbox" name="appliance_fan" onclick="{this.click()}" id="appliance_fan"   >
+                        </div>
+
+                        <div class="radio_btns" onclick="{checkbox_btn_click('appliance_tubelights')}">
+                            <label for="">Tube-lights</label>
+                            <input type="checkbox" name="appliance_tubelights" onclick="{this.click()}" id="appliance_tubelights"   >
+                        </div>
+
+                        <div class="radio_btns" onclick="{checkbox_btn_click('appliance_Inventers')}">
+                            <label for="">Inventer</label>
+                            <input type="checkbox" name="appliance_Inventers" onclick="{this.click()}" id="appliance_Inventers"   >
+                        </div>
+                    </div>
+                </div>
+            
+            </div>
+ 
+            <script>
+                function checkbox_btn_click(input_id,id) {
+                    element=document.getElementById(input_id).click();
+
+                };
+
+            </script>
+
+
+
+
+
+
+            <div class="form-upload-element">
+
+
+                <div>    
+                    <input type="number" onkeyup="validate_creds(id,name)" id="property_monthly_rent_div" class="inner_div_input_elements" name="monthly_rent" placeholder="Monthly Rent" required>
+
+                </div>
+                <div>
+                    <!-- <input type="text" name="parking" placeholder="Parking"> -->
+                    <select class="inner_div_select_elements" required name="parking" id="">
+                        <option value="none" >Parking</option>
+                        <option value="Bike Only">Bike Only</option>
+                        <option value="Car Only">Car Only</option>
+                        <option value="Car & Bike">Car & Bike </option>
+                    </select>
+                </div>
+             
+            </div>
+          
+            <div class="">
+                <button id="selling_submit_btn" type="submit">
+                    POST AD
+                </button>
+            </div>
+        
+        </form>
+    
+
+</div>
+
+<div class="Post_uploaded_success">
+    <div>
+        <h4>Post Successfully Uploaded !!</h4>
+        <strong style="color: black;">Post Expires in 30 Days </strong>
+        <br><br>
+        <a href="/"><button type="button" id="render_btn" hidden> Ok </button></a>
+    </div>
+</div>
+
+
+<!-- Images selected pop-up -->
+    <div class="image_selected_div" id="selected" >
+    
+    </div>
+    
+    <div class="comfirm_selection_btn">
+        <button id="confirm_btns">Confirm</button>   
+        <button id="cancel_btns">Cancel</button>
+    </div>
+
+
+
+    <!-- limit_over_pop_up -->
+
+    <div class="limit_over_pop_up">
+        <div id="inner_div_limit_over_pop_up">
+            <h4 style="color: red;" class="limit_over_pop_up_font_size">Oops, Limit-Over !!</h4>
+            <h4 class="limit_over_pop_up_font_size">Enroll Membership To <b>Post Ads</b></h4>
+            <button onclick="{action()}">View Plans</button>
+        </div>
+    </div>
+
+    <script >
+          function limit_over(){
+            document.querySelector(".limit_over_pop_up").classList.remove('active')
+
+            }
+         if ("{{User_free_post_limit_over|safe}}"=="True")
+        {
+            document.querySelector(".limit_over_pop_up").classList.add('active')
+            setInterval(limit_over,8000);
+   
+        }
+        function action(){
+            window.location.href="/plans/"
+        }
+    </script>
+
+
+
+
+
+<script>
+
+    if("{{Data_Stored_Success}}" == "True"){
+        
+        document.querySelector(".Post_uploaded_success").classList.add("action");     
+        setTimeout(auto_click_render,2000); 
+    }
+    function auto_click_render(){
+            document.getElementById('render_btn').click();
+        }
+
+
+</script>
+ 
+
+
+<script src="{% static 'js/sell/sell_mini.js' %}">
+    
+
+    </script>
+
+<script>
+
+   
+
+   
+</script>
+
+    
+<!-- check for geo popup -->
+{% if Is_geo_crt == True %}
+
+<div class="geoloc_pop_up">
+    <img id="geoloc_pop_up_img" src="/static/imp_website_img/geo_loc.jpg" alt="">
+    <pre>
+Currently Selling Feature is Active For <strong><i>Andhra Pradesh</i></strong> Only !!
+Do You Want to Proceed ?
+    </pre>
+    <button onclick="{geo_loc_ok()}" id="geoloc_pop_up_ok_btn">Yes</button>
+    <button onclick="{geo_loc_cancel()}" id="geoloc_pop_up_cancel_btn">No</button>
+</div>
+
+{% endif %}
+
+<script>
+geo_loc = "{{Is_geo_crt}}"
+if (geo_loc == 'True'){
+    document.body.style="overflow:hidden"
+    temp=document.querySelectorAll("#header_banner,#main_Div_selling_page")
+    for(var a=0;a<2;a++){
+        temp[a].style="opacity:10%"
+    }
+    
+
+}
+function geo_loc_ok(){
+    document.querySelector(".geoloc_pop_up").classList.add("active")
+    document.getElementById("header_banner").style=""
+    document.getElementById("main_Div_selling_page").style=""
+    document.body.style=""
+}
+function geo_loc_cancel(){
+    window.location.href="https://www.rentyourstay.in"
+}
+
+</script>
+
+
+
+</div> 
+
+</body>
+
+{% include 'footer.html' %}

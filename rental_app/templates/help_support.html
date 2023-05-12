@@ -1,0 +1,75 @@
+{% include 'header.html' %}
+<body>
+    <style>
+        #house_filter_search3,#house_filter_search4{
+            display: none;
+        }
+    </style>
+<!-- <h1>help & Support page</h1> -->
+
+<div id="form-main-div">
+
+<form action="/" method="post" enctype="multipart/form-data">
+{% csrf_token %}
+
+
+<div class="form-for-issues">
+    <label for="issues"> Subject </label>
+    <input type="text" id="issues" name="issues" required>
+</div>
+
+
+
+<div class="form-for-issues">
+    <label for="breif_issue"> Breif </label>
+    <textarea name="breif_issue" id="breif_issue" cols="100" rows="5" placeholder="What May I Help U ? Please Provide Registered Email ID and Contact Details !!" required ></textarea>
+</div>
+
+<div class="form-for-issues">
+    <label for="reference_image">Reference, if Any !</label>
+    <input type="file" name="reference_image" id="reference_image" >
+</div>
+
+
+<div class="form-for-issues">
+    <button id="form-submited" type="submit" >Submit</button>
+</div>
+
+</form>
+</div>
+
+
+
+<div class="response_tag">
+    <h3>We Will Get Back To You Soon !!</h3>
+</div>
+
+
+<script>
+    document.querySelector("#form-submited").addEventListener("click",function(){
+        document.querySelector(".response_tag").classList.add('popup')
+    });
+
+</script>
+
+
+<style>
+    @media only screen and (max-width:600px) {
+    .response_tag.popup {
+        width: 100%;
+        right: 0%;
+        top: 30%;
+        padding: 15% 0%;
+        text-align: center;
+    }    
+
+    #form-main-div {
+        width: 100%;
+    }
+
+}
+</style>
+
+</body>
+
+{% include 'footer.html' %}

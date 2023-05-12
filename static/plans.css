@@ -1,0 +1,68 @@
+.subdiv{
+/* border: 1px solid red; */
+display: inline-flex;
+justify-content: center;
+}
+
+.plans{
+    border: 1px solid black;
+    margin: 2%;
+    padding: 2%;
+    width: 30%;
+    height: 50%;
+    position: relative;
+    border-radius: 5px;
+}
+
+
+
+.plan_inner_div:hover{
+    padding-top: 15%;
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    left: -20px;
+    bottom: -11.5rem;
+    text-align: center;
+    background-color: lightgray;
+    transition: 1000ms;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.plan_btn{
+    width: 30%;
+    border-radius: 5px;
+    background-color: rebeccapurple;
+    position: absolute;
+    top: -150rem;
+    right: 34%;
+}
+
+.plans:hover{
+    border: none;
+}
+@media only screen and (max-width:600px) {
+
+    .plans {
+        border: 1px solid black;
+        margin: 2%;
+        padding: 2%;
+        width: auto;
+        height: auto;
+    }
+        .subdiv{
+        display: block;
+        }
+
+        .plan_inner_div:hover{
+
+            padding-top: 15%;
+            position: absolute;
+            border-radius: 20px;
+            z-index: 1;
+            padding-top: 10%;
+            height: 17rem;
+
+        }
+}

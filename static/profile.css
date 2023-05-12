@@ -1,0 +1,446 @@
+
+/* --------------------------- */
+
+.profile_main_div{
+    display: flex;
+    /* height: 60rem; */
+}
+#profile_image_tag{
+    width: 15rem;
+    /* height: 35%; */
+    border-radius: 50%;
+    background-color: white;
+    margin: 30px;
+    height: 15rem;
+
+}
+#left_profile_div{
+/* border: 1px solid red; */
+width: 35%;
+/* background-color: dodgerblue; */
+background-color: lightseagreen;
+color: white;
+text-align: center;
+text-transform: capitalize;
+
+
+}
+.right_profile_div{
+    /* border: 1px solid blue; */
+    overflow-y: scroll;
+    overflow: hidden;
+    width: 65%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    left: 35%;
+    top: -100rem;
+}
+.right_profile_div.action{
+    top:15%;
+    transition: 500ms;
+    display: contents;
+}
+
+#a_img-profile:hover:after{
+    content: "Upload";
+    position:absolute;
+    top: 11.5rem;
+    left: 5.5rem;
+    font-size: xxx-large;
+    font-family: 'Roboto', sans-serif;
+    color:rgb(5, 4, 4);
+    font-weight: bolder;
+    z-index: 1;    
+    /* border: 1px solid red; */
+}
+#profile_editable_div{
+    /* border: 1px solid red; */
+    /* display: block; */
+    margin-top: 10%;
+}
+#edit-profile-btn,#help_support_btn,#logout-profile-btn{
+    outline: none;
+    border: none;
+    background-color: transparent;
+    color: white;
+    font-size: larger;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+.profile_inner_elements{
+    margin: 20px;
+
+}
+.form-element-profile-edit{
+    margin: 25px;
+    display: inline-grid;
+
+}
+.edit-profile-form_div{
+    /* border: 1px solid red; */
+    width: 100%;
+    text-align: center;
+}
+label{
+    display: inline-block;
+    margin: 10px;
+    /* border: 1px solid red; */
+    text-align: left;
+    font-weight: 600;
+}
+input{
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: inherit;
+    line-height: 35px;
+    border-radius: 10px;
+    background-color: rgb(231, 228, 228);
+    padding-left: 30px;
+    border: 1px solid black;
+    
+
+}
+:focus-visible{
+    outline:3px solid transparent
+}
+#update_profile_submit_btn{
+    width: 25rem;
+    border: none;
+    border-radius: 10px;
+    height: 42px;
+    font-size: larger;
+    font-weight: 700;
+    color: white;
+    background-color: royalblue;
+}
+
+/* ------------default------ */
+.right_profile_default_Screen{
+
+    width: 100%;
+    display: table;
+    
+    /* position: absolute;
+    left: 35%;
+    top:-250% */
+
+
+}
+#profile_info_div{
+    /* border: 1px solid red; */
+    text-align: start;
+    height: 20%;
+    padding: 10px;
+    padding-left: 10%;
+    
+}
+#property_posted_imgs_div{
+    border: 1px solid black;
+    height: 40%;
+    width: 48%;
+    display: inline-block;
+    margin: 4px;
+    padding: 5px;
+    border-radius: 10px;
+    position: relative;
+
+}
+
+#user_posted_ads_details{
+    margin-top: 50px;
+    padding: 15px 0px 0px 15px;
+    border: 2px solid lightgray;
+    border-radius: 10px;
+}
+
+.profile_pic_upload{
+    position: absolute;
+    top:-150%;
+    border: 1px solid red;
+    height: 50%;
+    width: 50%;
+    text-align: center;
+    border-radius: 10px;
+    background-color: white;
+    
+}
+.profile_pic_upload.upload{
+    top: 25%;
+    right: 25%;
+    
+    
+}
+#div1_profile{
+    /* border: 1px solid red; */
+    position: absolute;
+    top: 32%;
+    width: 100%;
+}
+
+#div2_profile{
+    cursor: pointer;
+    font-size: 29px;
+    font-weight: 700;
+    color: blue;
+    width: fit-content;
+    position: absolute;
+    right: 3%;
+       
+}
+
+.profile_main_div.click_on_profile_btn{
+    opacity: 20%;
+    cursor: not-allowed;
+    pointer-events: none;
+} 
+
+.post_edit-delete_btn{
+    width: 8rem;
+    border: none;
+    font-weight: 600;
+    border-radius: 50px;
+    font-size: 15px;
+    padding: 4px;
+    background-color: lightslategrey;
+    color: seashell;
+}
+.post_edit-delete_btn:hover{
+    background-color: lightskyblue;
+    color: black;
+
+}
+
+#modify_btns{
+    position: absolute;
+    top: 27%;
+    right: 9.5%;
+    padding-bottom: 10px;
+
+}
+#profile_pic_pop_up_submit_btn{
+    position: absolute;
+    width: 100%;
+    bottom: 16%;
+}
+
+/* ================================================ */
+
+/* ================================================ */
+@media only screen and (max-width:800px) {
+
+    #profile_editable_div{
+        margin-top: 0%;
+    }
+    #a_img-profile:hover:after{
+        content: none;
+    }
+
+    #left_profile_img_div{
+        /* height: 20%; */
+        height: 30%;
+    }
+    
+    #profile_image_tag {
+        /* width: 100%;
+        border-radius: 50%;
+        background-color: white;
+        margin: 10px 0px 0px 0px;
+        height:100% */
+
+        width: 31%;
+        border-radius: 50%;
+        background-color: white;
+        margin: 10px 0px 0px 0px;
+        height: 25%;
+        position: absolute;
+        left: 0%;
+            }
+    #left_profile_div {
+        /* border: 1px solid red; */
+        width: 45%;
+    }
+    #welcome_invite {
+        font-size: inherit;
+        position: absolute;
+        top: 11%;
+        left: 34%;
+        color: grey;
+    }
+
+    .profile_inner_elements {
+       margin: 25px 0px 0px 0px;
+    }
+    #edit-profile-btn, #help_support_btn, #logout-profile-btn {
+       
+        font-size: smaller;
+    }
+    #profile_info_div {
+        /* border: 1px solid red; */
+        margin-top: 7%;
+        padding-left: 5%;
+    }
+
+    #user_posted_ads_details {
+    margin-top: 0px;
+    padding: 0px;
+    border: 2px solid lightgray;
+    border-radius: 5px;
+    }
+
+
+    #property_posted_imgs_div {
+        height: 40%;
+        width: 95%;
+        margin: 4px;
+        padding: 3px;
+        border-radius: 5px;
+    }
+    #modify_btns {
+        right: 0%;
+        width: 50%;
+        text-align: center;
+    }
+    .post_edit-delete_btn{
+        width: 70%;
+    }
+    #notification_close_btn {
+        width: 100%;
+        height: 5%;
+        left: 0%;
+        border-radius: 0%;
+    }
+    .profile_pic_upload.upload {
+        right: 0%;
+    }
+    .profile_pic_upload {
+        width: 100%;
+        height: 30%;
+    
+    }
+    #update_profile_submit_btn {
+        width: 100%;
+    }
+    #form-main-div {
+        width: 100%;
+    }
+
+
+
+}
+
+/* ================================================ */
+@media only screen and (max-width:600px) {
+
+    #profile_editable_div{
+        margin-top: 0%;
+    }
+    #a_img-profile:hover:after{
+        content: none;
+    }
+
+    #left_profile_img_div{
+        /* height: 20%; */
+        height: 30%;
+    }
+    
+    #profile_image_tag {
+        /* width: 100%;
+        border-radius: 50%;
+        background-color: white;
+        margin: 10px 0px 0px 0px;
+        height:100% */
+
+        width: 31%;
+        border-radius: 50%;
+        background-color: white;
+        margin: 10px 0px 0px 0px;
+        height: 21%;
+        position: absolute;
+        left: 0%;
+            }
+    #left_profile_div {
+        /* border: 1px solid red; */
+        width: 45%;
+    }
+    #welcome_invite {
+        font-size: inherit;
+        position: absolute;
+        top: 11%;
+        left: 34%;
+        color: grey;
+    }
+
+    .profile_inner_elements {
+       margin: 25px 0px 0px 0px;
+    }
+    #edit-profile-btn, #help_support_btn, #logout-profile-btn {
+       
+        font-size: smaller;
+    }
+    #profile_info_div {
+        /* border: 1px solid red; */
+        margin-top: 7%;
+        padding-left: 5%;
+    }
+
+    #user_posted_ads_details {
+    margin-top: 0px;
+    padding: 0px;
+    border: 2px solid lightgray;
+    border-radius: 5px;
+    }
+
+
+    #property_posted_imgs_div {
+        height: 40%;
+        width: 95%;
+        margin: 4px;
+        padding: 3px;
+        border-radius: 5px;
+    }
+    #modify_btns {
+        right: 0%;
+        width: 50%;
+        text-align: center;
+    }
+    .post_edit-delete_btn{
+        width: 70%;
+    }
+    #notification_close_btn {
+        width: 100%;
+        height: 5%;
+        left: 0%;
+        border-radius: 0%;
+    }
+    .profile_pic_upload.upload {
+        right: 0%;
+    }
+    .profile_pic_upload {
+        width: 100%;
+        height: 30%;
+    
+    }
+    #update_profile_submit_btn {
+        width: 100%;
+    }
+    #form-main-div {
+        width: 100%;
+    }
+
+
+
+}
+
+
+@media only screen and (max-width:500px) {
+
+    #profile_image_tag {
+
+        width: 31%;
+        border-radius: 50%;
+        background-color: white;
+        margin: 10px 0px 0px 0px;
+        height: 18%;
+    }
+}

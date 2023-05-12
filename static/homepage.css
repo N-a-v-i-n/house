@@ -1,0 +1,1394 @@
+
+
+#Min_Range,#Max_Range{
+  height: 45px;
+}
+
+.from_filter_submit_reset_btn{
+  width: 45%;
+  background-color: royalblue;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+}
+
+input[type="radio" i]{
+  /* border: 1px solid red;
+   display: flex;
+  position: absolute;
+  right: 0%; */
+
+  display: none;
+
+
+  
+} 
+.radio_filter_class{
+  position: relative;
+  border: 1px solid gray;
+  display: inline-flex;
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 5%;
+  border-radius: 5px;
+}
+.select_class{
+  cursor: pointer;
+  width: 100%;
+  height: 10%;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid grey;
+  border-radius: 5px;
+}
+
+#btn_filter{
+  background-color: gold;
+  color: royalblue;
+  width: 80px;
+  display: flex;
+  rotate: 90deg;
+  position: fixed;
+  left: -30px;
+  top: 50%;
+  justify-content: center;
+  font-size: 22px;
+  border-radius: 5px;
+}
+#left_hover_popup_div{
+height: 100%;
+width: 1%;
+/* border:1px solid red; */
+position: fixed;
+z-index: 0;
+}
+.filter_form_element{
+  padding-bottom: 10px;
+}
+.filtering_products{
+  position: fixed;
+  padding: 20px;
+  top: 0%;
+  justify-content: space-evenly;
+  height: 100%;
+  background-color: ghostwhite;
+  left: -150rem;
+  width: 20%;
+  overflow: scroll;
+}
+.filtering_products.active{
+  left: 0px;
+  
+}
+/* -------------------------- */
+.line_height{
+  font-weight: 500;
+  /* border: 1px solid; */
+  line-height: 200%;
+  
+  font-size: 15px;
+
+
+}
+#inner_banner_div2_1{
+  text-align: center;
+}
+#inner_banner_div2_2{
+  padding-left: 20%;
+
+}
+#inner_banner_div2_3{
+  text-align: center;
+
+}
+
+#login_forgot_password{
+  color: red;
+  text-decoration: none;
+}
+
+#why_your_stay{
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: space-evenly;
+  background-color: darkturquoise;
+  height: 18rem;
+  width: 100%;
+
+}
+#inner_banner_div1{
+  width: 20%;
+  /* border: 1px solid red; */
+  text-align: center;
+
+}
+#inner_banner_div2{
+  width: 60%;
+  margin-top: 1%;
+  /* border: 1px solid red; */
+
+}
+
+#login_form_div input,#sign_up_rite_div input:-webkit-autofill,
+#login_form_div input,#sign_up_rite_div input:-webkit-autofill:hover,
+#login_form_div input,#sign_up_rite_div input:-webkit-autofill:focus,
+#login_form_div input,#sign_up_rite_div input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0px 1000px aliceblue inset !important;
+}
+
+#inner_banner_div2_3_btn{
+  height: 12%;
+  background-color: gold;
+  font-weight: 700;
+  border: none;
+  border-radius: 5px;
+  padding: 0% 5%;
+}
+#company_logo_banner_img{
+  width: 285px;;
+}
+
+/* ---------------------------------- */
+#home_pg_banner_close_btn{
+  position: absolute;
+  right:20%;
+  z-index: 5;
+  background-color: red;
+  color: white;
+  width: 4%;
+  border-radius: 5px;
+}
+.home_pg_popup{
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 10%;
+  left: 10%;
+  z-index: 4;
+  border-radius: 5px;
+
+
+
+}
+#img_home_pg_popup{
+  height: 80%;
+  width: 80%;
+  position: relative;
+  border-radius: 5px;
+}
+
+.home_pg_popup.active{
+  top: -150rem ;
+}
+
+/* -------------------------------- */
+
+/* signup div */
+
+.dev_signup_form{
+  display: flex;
+  width: 80%;
+  position: fixed;
+  top: -250%;
+  right: 10%;
+  background-color: aliceblue;
+  text-align: center;
+  border-radius: 10px;
+  transition: 1000ms;
+  height: 80%;
+}
+
+.dev_signup_form.action{
+  top: 15%;
+}
+#sign_up_left_div{
+  width: 50%;
+  /* border: 1px solid; */
+  padding-top: 8%;
+  border-radius: 5px;
+  background-color: darkturquoise;
+}
+#sign_up_rite_div{
+  width: 50%;
+
+}
+#benefits_of_rys_header{
+  margin-top: 3%;
+}
+#benefits_of_rys_para{
+  text-align: start;
+  padding-left: 5%;
+  margin:8% 0% 5% 5%;
+
+}
+#benefits_of_rys_explore{
+  height: 8%;
+  background-color: gold;
+  font-weight: 700;
+  border: none;
+  border-radius: 5px;
+  padding: 0% 5%;
+}
+.terms_policy_a{
+  text-decoration: none;
+
+}
+.terms_and_policy_div{
+  width: 80%;
+  margin-left: 10%;
+
+}
+.signup-form-elements_title{
+  text-align: center;
+    margin: 3%;
+    color: black;
+}
+
+
+
+/* ----------------------------------- */
+#heart_shape_like_btn{
+  border: none;
+  text-align: end;
+  /* width: 20%; */
+  position: absolute;
+  right: 5%;
+  top: 1%;
+
+}
+/* .img-thumbnail {
+   padding: 0%;
+} */
+#homepage_main_banner{
+  margin-top: 5.5%;
+  position: fixed;
+  width: 100%;
+  height: 70%;
+  /* border: 3px solid black; */
+}
+#homepage_main_banner_image_div{
+  background-color: lightgrey;
+    height: 100%;
+    margin-top: 20%;
+}
+#homepage_main_banner_image{
+     width: 100%;
+    position: fixed;
+    z-index: 0;
+    background-color: orange;
+    top: 14%;
+}
+#para_marquee{
+    position: fixed;
+    width: 100%;
+    top: 10.5%;
+
+}
+#main_div_homepage{
+
+  /* background-image: url("/static/bg_img.jpg"); */
+  background-color: white;
+  width: 100%;
+position: absolute;
+/* border: 1px solid blue; */
+border-radius: 70px 0px 0px 0px;
+top: 65%;
+}
+
+#div3{
+    margin: 10px;
+    /* border:2px solid red; */
+    text-align: center;
+    /* height: 200PX;
+    overflow-y:scroll; */
+}
+#property_img{
+    /* height: 250px;
+    margin: 0px;
+    height: 80%;
+    width: 100%;
+    border-radius: 10px; */
+
+    height: 250px;
+    margin: 0px;
+    width: 100%;
+    border-radius: 10px;
+}
+#a_property_img1{
+    display: inline-block;
+    border: 0.5px solid grey;
+    background-color: white;
+    padding-bottom: 85PX;
+    position: relative;
+    border-radius: 10px;
+    margin: 10px;
+    height: 50%;
+    width: 22%;
+    image-rendering: auto;
+
+}
+#a_property_img2{
+  position: absolute;
+  bottom: 10px;
+  left: 15px;
+  color: grey;
+  font-size: 10px;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+#a_property_img3{
+  font-weight: 700;
+  white-space: nowrap;
+  color: black;
+  font-size: 25px;
+  position: absolute;
+  top: 74%;
+  left: 5%;
+}
+
+#sign_in_register_forgot_password_div{
+  display: grid;
+  justify-content: space-evenly;
+}
+
+.sign_up_input{
+  width: 70%;
+  background: content-box;
+  border: none;
+  outline: none; 
+  font-weight: 600;
+  border-bottom: 1px solid black;
+}
+.login_form_input_element{
+  width: 75%;
+  background: content-box;
+  border: none;
+  outline: none;
+  font-weight: 600;
+  border-bottom: 1px solid black;
+
+}
+
+
+#outer_img_div{
+  border: 2px solid red;
+}
+
+/* #property_img:hover{
+  background-color: green;
+  cursor: pointer;
+} */
+/* #para{
+    margin: 10px;
+    color: white;
+    text-align: center;
+} */
+body{
+  /* background-image: url('/static/bg_images.avif'); */
+  background-color: white;
+}
+
+/* .entry_btn{
+  border: none;
+  background-color:none;
+  background-color: aliceblue;
+}
+.entry_btn:hover{
+  color: blue;
+} */
+
+.liked_btn_home{
+  border: none; 
+  background-color: white; 
+  font-size: x-large; 
+  border-radius: 50%;
+}
+
+#search_btn{
+  height: 25px;
+}
+
+.heart_shape{
+  border: 1px solid red;
+  width: 20px;
+  height: 20px;
+  border-top-left-radius: 61%;
+  border-top-right-radius: 73%;
+}
+
+#bottom-left-heart_shape{
+  border: 1px solid red;
+  width: 20px;
+  height: 20px;
+}
+#bottom-right-heart_shape{
+  border: 1px solid red;
+  width: 20px;
+  height: 20px;
+}
+#common_heart_div{
+  display: flex;  
+}
+
+#sign_in_btn_home{
+  width: 100%; 
+  border-radius: 20p; 
+  font-weight: bold; 
+  outline: none; 
+  border: none; 
+  border-radius: 50px;
+  background-color: royalblue;                
+  color: white;
+}
+.div_login-form-elements{
+  width: 0%;
+  display: inline-grid;    
+  background-color: aliceblue;
+  border-radius: 10px;
+  position: relative;
+  height: 100%;
+  overflow: scroll;
+  transition: 1000ms;
+  
+}
+.div_login-form-elements.active{
+
+  width: 45%;
+
+}
+#remove_popup_btn_login,#remove_popup_btn_signup{
+    position: absolute;
+    font-size: 15px;
+    right: 0px;
+    cursor: pointer;
+    background-color: red;
+    border-radius: 3px;
+    color: white;
+    width: 8%;
+} 
+
+::placeholder{
+  color: red;
+}
+
+.login-form-elements{
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  
+  /* border: 1px solid blue; */
+}
+
+.login-form-elements_title{
+  text-align: center;
+  margin: 5%;
+  color: black
+
+}
+
+
+.login_popup_div_integration{
+  /* border: 1px solid red; */
+  width: 0%;
+  display: block;
+  /* justify-content: center; */
+  position: fixed;
+  top: 22%;
+  border-radius: 10px;
+  text-align: center;
+  overflow: hidden;
+  
+  }
+.login_popup_div_integration.action{
+  /* top: 22%; */
+  bottom: 22%;
+  /* transition: 1000ms; */
+  width: 100%;
+}
+.signup_form_popup{
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+
+  
+  
+}
+#register_btn{
+  font-weight: 700;
+}
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#pagination_pg{
+  margin: 30px 0px 0px 20px;}
+
+
+
+#a_property_img2_0{
+  position: absolute;
+  bottom: 31px;
+  left: 15px;
+  color: grey;
+  font-size: small;
+  text-transform: capitalize;
+  font-weight: 500;
+
+}
+#heart_shape_like_btn_in_home_pg {
+    left: 77%;
+    bottom: 9%;
+    position: absolute;
+}
+
+#a_property_like_count{
+  position: absolute;
+  bottom: 52px;
+  right: 12%;
+  color: black;
+  font-size: 17px;
+}
+.data_not_found {
+  position: absolute;
+  width: 65%;
+  height: -1%;
+  text-align: center;
+  padding: 3%;
+  right: 17.5%;
+  background: whitesmoke;
+  border-radius: 10px;
+  z-index: 1;
+}
+/* ======================================================== */
+@media only screen and (max-width:1100px) {
+
+
+  .div_login-form-elements {
+    transition: 0ms;
+  }
+  .dev_signup_form {
+    transition: 0ms;
+    width: 90%;
+    left: 5%;
+  }
+
+  #register_submit_btm {
+    height: 35px;
+}
+
+  .liked_btn_home {
+    font-size: 25px;
+  }
+  #heart_shape_like_btn_in_home_pg {
+    left: 71.5%;
+    bottom: 9%;
+    width: 30px;
+  }
+
+  #a_property_img2_0 {
+    bottom: 25px;
+  }
+  #a_property_img2 {
+    bottom: 8px;
+  }
+  #para_marquee {
+    top: 11%;
+  }
+  #homepage_main_banner_image {
+    top: 14.5%;
+    height: 40%;
+  }
+
+  #main_div_homepage {
+    border-radius: 30px 0px 0px 0px;
+    top: 50%;
+}
+
+#a_property_img1 {
+  display: inline-block;
+  border: 0.5px solid grey;
+  background-color: white;
+  padding-bottom: 85PX;
+  position: relative;
+  border-radius: 10px;
+  margin: 2px;
+  width: 32%;
+  image-rendering: auto;
+  margin-bottom: 6px;
+}
+
+#inner_banner_div2_3_btn {
+  height: 15%;
+  margin-bottom: 4%;
+}
+.login_popup_div_integration.action {
+  top: 15%;
+  /* bottom: 22%;
+  width: 65%;
+  left: 17.5%; */
+  
+}
+
+.div_login-form-elements.active {
+  width: 45%;
+}
+
+.login-form-elements_title {
+  margin: 8%;
+}
+.login_popup_div_integration {
+  width: 100%;
+  position: fixed;
+  top: -150%;
+  text-align: center;
+  height: 70%;
+  
+
+}
+.login-form-elements {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+.login-form-elements_title h3{
+  font-size: 35px;
+}
+#property_img {
+    height: 260px;
+    margin: 0px;
+    width: 70%;
+    border-radius: 10px;
+}
+
+.home_pg_popup {
+  top: 11%;
+  left: 7.5%;
+}
+#home_pg_banner_close_btn {
+  right: 15%;
+  width: 8%;
+  
+}
+
+.sign_up_input {
+  width: 70%;
+  PADDING: 10PX;
+}
+
+
+#img_home_pg_popup {
+  width: 85%;
+}
+
+.dev_signup_form.action {
+  top: 16%;
+  display: block;
+  overflow: scroll;
+  width: 90%;
+  left: 5%;
+  height: 76%;
+
+}
+#benefits_of_rys_header {
+  margin-top: -4%;
+}
+#benefits_of_rys_header h3 {
+  font-size: 27px;
+}
+
+#benefits_of_rys_para {
+  margin: 3% 10% 0% 20%;
+  width: 80%;
+}
+#benefits_of_rys_explore {
+  margin-bottom: 10px;
+}
+#remove_popup_btn_login, #remove_popup_btn_signup {
+  width: 10%;
+  height: 26px;
+  font-size: large;
+
+}
+#sign_up_left_div {
+  width: 100%;
+}
+
+#sign_up_rite_div {
+  width: 100%;
+  margin-bottom: 15%;
+}
+
+#why_your_stay {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: darkturquoise;
+    height: 18rem;
+    width: 100%;
+}
+#inner_banner_div2 {
+  width: 100%;
+}
+
+#inner_banner_div2_2 {
+  padding-left: 0px;
+  width: 60%;
+  margin-left: 24%;
+}
+.login_form_input_element {
+  width: 70%;
+  font-weight: 700;
+  padding: 2% 0% 0% 0%;
+  margin-top: -10px;
+  padding: 10px;
+
+}
+#email_validate p{
+  font-size: 20px;
+}
+
+#sign_in_btn_home{
+  width: 170px;
+    border-radius: 20p;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    border-radius: 50px;
+    background-color: royalblue;
+    color: white;
+    height: 40px;
+}
+#register_btn{
+  font-size: larger;
+}
+
+#login_forgot_password{
+  font-size: large;
+  color: red;
+  text-decoration: none;
+}
+
+.filtering_products{
+ 
+  top: 3%;
+  height: 100%;
+  width: 35%;
+  overflow: scroll;
+}
+
+
+}
+
+/* ========================================================= */
+
+@media screen and (max-width:1200px)and (max-height:850px) {
+
+
+}
+
+
+/* ========================================================*/
+
+@media screen and (max-width:850px)and (max-height:1200px) {
+  #para_marquee {
+    top: 7%;
+    FONT-SIZE: 25px;
+}
+#homepage_main_banner_image {
+  top: 10%;
+  height: 50%;
+  width: 100%;
+}
+
+}
+@media screen and (max-width:850px)and (max-height:800px)  {
+
+.div_login-form-elements {
+  transition: 500ms;
+}
+.dev_signup_form {
+  transition: 400ms;
+}
+
+.liked_btn_home {
+  font-size: 25px;
+}
+#heart_shape_like_btn_in_home_pg {
+  left: 71.5%;
+  bottom: 9%;
+  width: 30px;
+}
+
+#a_property_img2_0 {
+  bottom: 25px;
+}
+#a_property_img2 {
+  bottom: 8px;
+}
+#para_marquee {
+  top: 12%;
+  font-size: 17px;
+
+}
+#homepage_main_banner_image {
+  top: 15.5%;
+  height: 50%;
+  width: 100%;
+}
+
+#main_div_homepage {
+  border-radius: 30px 0px 0px 0px;
+  top: 58%;
+}
+
+#a_property_img1 {
+display: inline-block;
+border: 0.5px solid grey;
+background-color: white;
+padding-bottom: 85PX;
+position: relative;
+border-radius: 10px;
+margin: 2px;
+width: 32%;
+image-rendering: auto;
+margin-bottom: 6px;
+}
+
+#inner_banner_div2_3_btn {
+height: 15%;
+margin-bottom: 4%;
+}
+.login_popup_div_integration.action {
+top: 15%;
+
+}
+
+.div_login-form-elements.active {
+width: 95%;
+}
+
+.login-form-elements_title {
+margin: 8%;
+}
+.login_popup_div_integration {
+width: 100%;
+position: fixed;
+top: -150%;
+text-align: center;
+height: 70%;
+
+}
+.login-form-elements {
+padding: 10px;
+display: flex;
+justify-content: center;
+}
+.login-form-elements_title h3{
+font-size: 35px;
+}
+#property_img {
+height: 235px;
+margin: 0px;
+width: 100%;
+border-radius: 10px;
+}
+
+.home_pg_popup {
+top: 11%;
+left: 7.5%;
+}
+#home_pg_banner_close_btn {
+right: 15%;
+width: 8%;
+
+}
+
+.sign_up_input {
+width: 70%;
+PADDING: 10PX;
+}
+
+
+#img_home_pg_popup {
+width: 85%;
+}
+
+.dev_signup_form.action {
+top: 16%;
+display: block;
+overflow: scroll;
+width: 90%;
+left: 5%;
+height: 76%;
+
+}
+#benefits_of_rys_header {
+margin-top: -4%;
+}
+#benefits_of_rys_header h3 {
+font-size: 27px;
+}
+
+#benefits_of_rys_para {
+  margin: 3% 10% 0% 10%;
+  width: 80%;
+}
+#benefits_of_rys_explore {
+margin-bottom: 10px;
+}
+#remove_popup_btn_login, #remove_popup_btn_signup {
+width: 10%;
+height: 26px;
+font-size: large;
+
+}
+#sign_up_left_div {
+width: 100%;
+}
+
+#sign_up_rite_div {
+width: 100%;
+margin-bottom: 15%;
+}
+
+#why_your_stay {
+width: 100%;
+padding-bottom: 10px;
+height: fit-content;
+}
+#inner_banner_div2 {
+width: 100%;
+}
+
+#inner_banner_div2_2 {
+  padding-left: 0px;
+  width: 80%;
+  margin-left: 10%;
+}
+.login_form_input_element {
+width: 70%;
+font-weight: 700;
+padding: 2% 0% 0% 0%;
+margin-top: -10px;
+padding: 10px;
+
+}
+#email_validate p{
+font-size: 20px;
+}
+
+#sign_in_btn_home{
+width: 170px;
+  border-radius: 20p;
+  font-weight: bold;
+  outline: none;
+  border: none;
+  border-radius: 50px;
+  background-color: royalblue;
+  color: white;
+  height: 40px;
+}
+#register_btn{
+font-size: larger;
+}
+
+#login_forgot_password{
+font-size: large;
+color: red;
+text-decoration: none;
+}
+.filtering_products{
+
+top: 5%;
+height: 100%;
+width: 35%;
+overflow: scroll;
+}
+
+
+}
+
+@media only screen and (max-width:650px)and (max-height:800px) {
+
+.div_login-form-elements {
+  transition: 500ms;
+}
+.dev_signup_form {
+  transition: 400ms;
+}
+
+.liked_btn_home {
+  font-size: 25px;
+}
+#heart_shape_like_btn_in_home_pg {
+  left: 73%;
+  bottom: 9%;
+  width: 30px;
+}
+
+#a_property_img2_0 {
+  bottom: 25px;
+}
+#a_property_img2 {
+  bottom: 8px;
+}
+#para_marquee {
+  top: 16.5%;
+  font-size: 17px;
+}
+#homepage_main_banner_image {
+  top: 20%;
+  width: 100%;
+  height: 44%;
+}
+
+#main_div_homepage {
+  border-radius: 45px 0px 0px 0px;
+  top: 58%;
+}
+
+#a_property_img1 {
+display: inline-block;
+border: 0.5px solid grey;
+background-color: white;
+padding-bottom: 85PX;
+position: relative;
+border-radius: 10px;
+margin: 2px;
+width: 48%;
+image-rendering: auto;
+margin-bottom: 6px;
+}
+
+#inner_banner_div2_3_btn {
+height: 15%;
+margin-bottom: 4%;
+}
+.login_popup_div_integration.action {
+
+top: 22%;
+}
+
+.div_login-form-elements.active {
+width: 95%;
+}
+
+.login-form-elements_title {
+margin: 10%;
+}
+.login_popup_div_integration {
+width: 100%;
+position: fixed;
+top: -150%;
+text-align: center;
+
+}
+#property_img {
+height: 235px;
+margin: 0px;
+width: 100%;
+border-radius: 10px;
+}
+
+.home_pg_popup {
+top: 11%;
+left: 7.5%;
+}
+#home_pg_banner_close_btn {
+right: 15%;
+width: 8%;
+
+}
+#img_home_pg_popup {
+width: 85%;
+}
+
+.dev_signup_form.action {
+top: 16%;
+display: block;
+overflow: scroll;
+width: 90%;
+left: 5%;
+height: 76%;
+
+}
+#benefits_of_rys_header {
+margin-top: 0%;
+}
+#benefits_of_rys_header h3 {
+font-size: 20px;
+}
+
+#benefits_of_rys_para {
+text-align: start;
+padding-left: 0%;
+margin: 3% 0% 0% 3%;
+}
+#benefits_of_rys_explore {
+margin-bottom: 10px;
+}
+#remove_popup_btn_login, #remove_popup_btn_signup {
+width: 10%;
+}
+#sign_up_left_div {
+width: 100%;
+}
+
+#sign_up_rite_div {
+width: 100%;
+margin-bottom: 15%;
+}
+
+.line_height {
+font-weight: 400;
+/* border: 1px solid; */
+line-height: 170%;
+font-size: 12px;
+}
+/* #why_your_stay {
+width: 100%;
+padding-bottom: 10px;
+height: fit-content;
+} */
+#inner_banner_div2 {
+width: 100%;
+}
+
+#inner_banner_div2_2 {
+padding-left: 0%
+}
+.filtering_products{
+
+  top: 5%;
+  height: 89%;
+  width: 40%;
+  overflow: scroll;
+}
+
+
+}
+
+/* ==================================================== */
+
+@media only screen and (max-width:500px)and (max-height:800px){
+
+  .data_not_found {
+    padding: 5%;
+  }
+
+  #search_btn{
+    height: 35%;
+  }
+
+
+  #homepage_main_banner_image {
+    top: 18.5%;
+    width: 100%;
+    height: 37%;
+  }
+    #para_marquee{
+      position: fixed;
+      top: 15%;
+      width: 100%;
+      }
+  #a_property_like_count{
+    position: absolute;
+    bottom: 40px;
+    right: 10%;
+    color: black;
+    font-size: 15px;
+  }
+
+  .sign_up_input {
+    width: 100%;
+  }
+
+  /* enable this only on home page */
+
+  .dev_signup_form {
+    display: block;
+    width: 90%;
+    position: fixed;
+    top: -250%;
+    left: 5%;
+    text-align: center;
+    border-radius: 10px;
+    transition: 1000ms;
+    height: 80%;
+    overflow: scroll;
+}
+
+#sign_up_rite_div form{
+  width: 80%;
+  margin-left: 10%;
+}
+#heart_shape_like_btn_in_home_pg {
+  left: 70%;
+  bottom: 7%;
+  position: absolute;
+  width: 35px;
+}
+
+#property_img{
+  height: 165px;
+}
+
+#a_property_img2 {
+  font-size: 9px;
+  left: 9px;
+
+}
+
+#a_property_img1{
+  width: 48%;
+  height: 15rem;
+  margin: 0px 2px 6px 0px;
+}
+
+#a_property_img2_0 {
+  bottom: 25px;
+  left: 9px;
+  font-size: 11px;
+}
+
+#div3{
+  
+  margin: 3px;  
+}
+
+#a_property_img3{
+  font-size: small;
+}
+#main_div_homepage {
+
+  background-color: white;
+  width: 100%;
+  position: absolute;
+  border-radius: 25px 0px 0px 0px;
+  top: 55%;
+
+
+}
+
+body {
+  background-color: white;
+}
+
+.div_login-form-elements {
+  width: 0%;
+  display: inline-grid;    
+  
+}
+.div_login-form-elements.active{
+
+width: 100%;
+
+}
+.login_popup_div_integration{
+
+
+/* border: 1px solid red; */
+width: 100%;
+position: fixed;
+top: -150%;
+text-align: center;
+}
+
+.login_popup_div_integration.action{
+top: 15%;
+
+
+}
+
+/* signup_mobile_popup */
+.dev_signup_form.action {
+top: 16%;
+}
+
+#remove_popup_btn_login, #remove_popup_btn_signup {
+width: 10%;
+}
+#sign_up_left_div {
+width: 100%;
+
+}
+#benefits_of_rys_header {
+margin-top: 0%;
+}
+#benefits_of_rys_header h3{
+font-size: large;
+}
+#benefits_of_rys_para {
+text-align: start;
+padding-left: 0%;
+margin: 3% 0% 0% 3%;
+}
+#sign_up_rite_div {
+width: 100%;
+margin-bottom: 15%;
+}
+.terms_and_policy_div {
+width: 100%;
+margin-left: 0%;
+}
+#benefits_of_rys_explore {
+margin-bottom: 10px;
+
+}
+/* ----------------------------------- */
+
+.home_pg_popup {
+        height: 90%;
+        width: 100%;
+        top: 11%;
+        left: 5%;
+
+    }
+    #img_home_pg_popup {
+      height: 88%;
+      width: 90%;
+    }
+    #home_pg_banner_close_btn { 
+        right: 10%;
+        width: 10%;
+    }
+
+/* -------------------------- */
+#why_your_stay {
+  width: 100%;
+  padding-bottom: 10px;
+  height: fit-content;
+  }
+
+  #inner_banner_div2 {
+  width: 100%;
+  }
+
+  #header_why_rent_your_stay{
+    font-size: 20px;
+  }
+  #inner_banner_div2_2 {
+  padding-left: 0%;
+  }
+  .line_height {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 150%;
+  }
+  .filtering_products {
+    top: 5%;
+    height: 90%;
+    width: 55%;
+    
+  }
+
+}
+
+/* ==================================================== */
+
+
+
+
+

@@ -1,0 +1,617 @@
+
+/* body{
+    background-color:#80808030;
+} */
+#product_price_details{
+    border: 1px solid black;
+    width: 28%;
+    position: absolute;
+    top: 0%;
+    right: 7px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: white;
+
+
+}
+
+#share_button{
+    position: absolute;
+    right: 24px;
+    top: 40px;
+    font-size: 30px;
+    text-decoration: none;
+}
+
+
+#right_arrow1{
+    height: 7%;
+    width: 4.6%;
+    position: absolute;
+    top: 16%;
+    right: 30%;
+    /* border: 1px solid red; */
+}
+
+#property_img_banner{
+    /* border: 2px solid red ; */
+    height: 70%;
+    width: fit-content;
+    border-radius: 5px;
+    cursor: pointer;
+
+   
+}
+#topdiv{
+    /* border: 2px solid red ; */
+    text-align: center;
+    width: 70%;
+    margin: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+#left_arrow1{
+    height: 7%;
+    width: 4.6%;
+    position: absolute;
+    top: 16%;
+    left: 1.5%;
+
+}
+
+#right_arrow1,#left_arrow1:hover{
+cursor: pointer;
+}
+
+/* Property Details  */
+#div2{
+    margin: 10px;
+    border-radius: 10px;
+    background-color: white;
+    width: 70%;
+    border: 1px solid black;
+    
+}
+.properties_div{
+    /* border: 1px solid red; */
+}
+.property_div_class{
+    display: inline-flex;
+    /* border: 1px solid #d1d1d1; */
+    justify-content: space-between;
+    width: 100%;
+
+}
+#property_sub_div{
+    margin: 10px;
+    text-transform: capitalize;
+}
+/* #inner_td{
+    text-align: end;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;;
+    font-weight: 700;
+    padding-right: 10px;
+}
+#inner_th{
+    padding: 8px;
+    text-align: start;
+    font-weight: normal;
+}
+#inner_td:hover{
+    color: red;
+    cursor: pointer;
+} */
+
+#like_logo{
+    border: 2px solid green;
+    height: 8%;
+    text-align: center;
+    padding: 0%;
+}
+#a_like_logo{
+    /* border: 0.2px solid green; */
+    padding-right: 28%;
+    padding-left: 28%;
+    text-decoration: none;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    color: mediumvioletred;
+   }
+
+#a_like_logo:hover{
+    cursor: pointer;
+    color: green;
+    text-decoration: none;
+}
+#product_owner_details{
+    border: 1px solid black;
+    padding: 3%;
+    border-radius: 1%;
+
+}
+#account_since{
+    margin : 9px 0px 0px 18px;
+}
+#phone_details{
+    margin : 20px 0px 0px 18px;
+}
+
+#heart_shape_like_btn{
+    border: none;
+    text-align: end;
+    /* width: 20%; */
+    position: absolute;
+    right: 5%;
+    top: 1%;
+
+}
+
+.light_screen_div{
+
+/* border: 2px solid blue; */
+position: absolute;
+top:-200%;
+height: 100%;
+width: 100%;
+text-align: center;
+
+}
+.light_screen_div.active{
+    top: 0px;
+}
+
+#left_arrow_light_screen{
+    height: 7%;
+    width: 4.6%;
+    position: absolute;
+    top: 44%;
+    left: 1%;
+    cursor: pointer;
+}
+#right_arrow_light_screen{
+
+    height: 7%;
+    width: 4.6%;
+    position: absolute;
+    top: 44%;
+    right: 1%;
+    cursor: pointer;
+    /* border: 1px solid red; */
+
+}
+.product_pg_main_div.active{
+opacity: 20%;
+pointer-events: none;
+height: 59%;
+overflow: hidden;
+}
+#property_img_banner_light_screen{
+    height: 100%;
+    /* width: 60%; */
+    width: fit-content;
+    padding-top: 0.5%;
+    padding-bottom:8%;
+}
+::-webkit-scrollbar {
+    display: none;
+    scroll-behavior: smooth;
+}
+#light_screen_cross_btn{
+    border:none;
+    outline: none;
+    background-color: transparent;
+    font-weight: bold;
+    font-size: x-large;
+    position: absolute;
+    top: 3%;
+    right: 3%;
+    border-radius: 5px;
+    background-color: red;
+}
+
+#sub_div_light_screen{
+    /* border: 1px solid red; */
+    display: block;
+    position: absolute;
+    bottom: 0%;
+    height: 15%;
+    width: 100%;
+    overflow: hidden;
+
+    
+}
+#sub_img_light_screen{
+    /* border: 1px solid red; */
+    height: 100%;
+    width: 10%;
+    
+}
+
+#property_details_div{
+    border: 2px solid red;
+}
+
+.limit_over_pop_up{
+    width: 100%;
+    height: 20%;
+    position: absolute;
+    display: flex;
+    top: -250%;
+    justify-content: center;
+
+
+}
+
+#inner_div_limit_over_pop_up{
+    border-radius: 10px;
+    background-color: darkgrey;
+    text-align: center;
+    padding: 15px;
+    width: 50%;
+   
+}
+
+.limit_over_pop_up.active{
+
+    top: 50%;
+
+}
+#request_for_view_contact_no_btn{
+    width: 100%;
+    height: 5%;
+    border: none;
+    border-radius: 25px;
+    background: royalblue;
+    font-size: x-large;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+
+}
+
+
+/* House Appliance */
+#house_appliances_product_pg{
+
+    margin: 10px;
+    border-radius: 10px;
+    background-color: white;
+    width: 70%;
+    border: 1px solid black;
+}
+.appliances_div{
+    /* border: 1px solid red; */
+    border: 1px solid #d1d1d1;
+    width: 50%;
+    padding: 8px;
+    text-align: start;
+    border-radius: 5px;
+    margin: 10px;
+}
+.appliance_div_class{
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-around;
+}
+.appliance_header_div{
+    width: 35%;
+}
+#house_appliances_div{
+    display: inline-flex;
+    width: 100%;
+}
+
+
+.product_pg_main_div{
+    /* border: 1px solid red; */
+    position: relative;
+}
+
+
+/* ===================================================== */
+
+
+@media only screen and (max-width:850px) {
+
+
+    #right_arrow_div{
+    /* background-color: red; */
+    position: absolute;
+    z-index: 11;
+    top: 0%;
+    width: 40px;
+    height: 31.5%;
+    right: 0%;
+    }
+
+
+    #right_arrow1 {
+        height: 80px;
+        width: 80%;
+        top: 39%;
+        right: 0%;
+        background-color: white;
+    }
+
+    #left_arrow_div{
+        /* background-color: red; */
+        position: absolute;
+        z-index: 11;
+        top: 0%;
+        width: 40px;
+        height: 31.5%;
+        left: 0%;
+        }
+    
+        #left_arrow1 {
+            height: 80px;
+            width: 80%;
+            top: 39%;
+            left: 0%;
+
+            background-color: white;
+        }
+    
+    #property_img_banner {
+        /* border: 2px solid red; */
+        width: 85%;
+    }
+
+    #topdiv {
+        /* border: 2px solid red; */
+        text-align: center;
+        width: 100%;
+        margin: 0px;
+        /* border: 1px solid black; */
+        border-radius: 1%;
+    }
+
+    #product_price_details {
+        width: 100%;
+        position:relative;
+        padding: 10px;
+        right: 0px;
+        border-radius: 5px;
+        background-color: white;
+        margin-top: 1%;
+    }
+
+    /* #property_img_banner {
+        height: 45%;
+        width: 100%;
+        border-radius: 1%;
+        cursor: pointer;
+    } */
+    /* #right_arrow1 {
+        height: 4%;
+        width: 5%;
+        top: 10%;
+        right: 2px;
+        background-color: lightgray;
+    } */
+
+    /* #left_arrow1 {
+        height: 4%;
+        width: 5%;
+        top: 10%;
+        left: 2px;
+        background-color: lightgray;
+    } */
+
+    #div2 {
+        margin: 0px;
+        border-radius: 5px;
+        background-color: white;
+        width: 100%;
+        margin-top: 1%;
+    }
+
+    #property_img_banner_light_screen {
+        height: 100%;
+        width: 100%;
+        padding-top: 0.5%;
+        padding-bottom: 8%;
+    }
+    #sub_div_light_screen {
+        /* border: 1px solid red; */
+        display: block;
+        position: absolute;
+        bottom: -12%;
+        height: 15%;
+        width: 100%;
+        overflow: hidden;
+    }
+    #inner_div_limit_over_pop_up {
+  
+        width: 75%;
+    }
+    .limit_over_pop_up_font_size{
+        font-size: initial;
+    }
+
+    #request_for_view_contact_no_btn{
+        width: 100%;
+        height: 5%;
+        border: none;
+        border-radius: 25px;
+        background: royalblue;
+        font-size: x-large;
+        font-family: 'Roboto', sans-serif;
+        color: white;
+    
+    }
+
+    /* Home appliances */
+    #house_appliances_product_pg {
+        margin: 0px;
+        width: 100%;
+        margin-top: 1%;
+    }
+    .appliances_div {
+        /* border: 1px solid red; */
+        border: none;
+        width: 50%;
+        padding: 1px 0px 0px;
+        margin: 0px;
+    }
+    .appliance_div_class {
+        display: inline-flex;
+        width: 100%;
+        justify-content: space-between;
+        padding: 0px 10px;
+    }
+    .appliance_header_div {
+        width: auto;
+    }
+
+    /* image right arrows and left arrows */
+    #right_arrow_light_screen,#left_arrow_light_screen {
+    height: 7%;
+    width: 7%;
+    background-color: lightgray;
+    }
+
+
+
+
+}
+
+
+/* ===================================================== */
+@media only screen and (max-width:500px) {
+    
+    #topdiv {
+        /* border: 2px solid red; */
+        text-align: center;
+        width: 100%;
+        margin: 0px;
+        /* border: 1px solid black; */
+        border-radius: 1%;
+    }
+
+    #product_price_details {
+        /* border: 2px solid red; */
+        width: 100%;
+        position:relative;
+        padding: 10px;
+        right: 0;
+        border-radius: 5px;
+        background-color: white;
+        margin-top: 1%;
+    }
+
+    #property_img_banner {
+        /* border: 2px solid red; */
+        height: 45%;
+        width: 100%;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    #right_arrow_div {
+        /* background-color: red; */
+        position: absolute;
+        z-index: 11;
+        top: 6%;
+        width: 40px;
+        height: 11%;
+        right: 0%;
+    }
+    #right_arrow1 {
+        height: 30%;
+        width: 65%;
+        top: 30%;
+        right: 2px;
+        background-color: white;
+    }
+
+    #left_arrow_div {
+        /* background-color: red; */
+        position: absolute;
+        z-index: 11;
+        top: 6%;
+        width: 40px;
+        height: 11%;
+        left: 0%;
+    }
+    #left_arrow1 {
+        height: 30%;
+        width: 65%;
+        top: 30%;
+        left: 2px;
+        background-color: white;
+    }
+
+    #div2 {
+        margin: 0px;
+        border-radius: 5px;
+        background-color: white;
+        width: 100%;
+        margin-top: 1%;
+    }
+
+    #property_img_banner_light_screen {
+        height: 100%;
+        width: 100%;
+        padding-top: 0.5%;
+        padding-bottom: 8%;
+    }
+    #sub_div_light_screen {
+        /* border: 1px solid red; */
+        display: block;
+        position: absolute;
+        bottom: -12%;
+        height: 15%;
+        width: 100%;
+        overflow: hidden;
+    }
+    #inner_div_limit_over_pop_up {
+  
+        width: 75%;
+    }
+    .limit_over_pop_up_font_size{
+        font-size: initial;
+    }
+
+    #request_for_view_contact_no_btn{
+        width: 100%;
+        height: 5%;
+        border: none;
+        border-radius: 25px;
+        background: royalblue;
+        font-size: x-large;
+        font-family: 'Roboto', sans-serif;
+        color: white;
+    
+    }
+
+    /* Home appliances */
+    #house_appliances_product_pg {
+        margin: 0px;
+        width: 100%;
+        margin-top: 1%;
+    }
+    .appliances_div {
+        /* border: 1px solid red; */
+        border: none;
+        width: 50%;
+        padding: 1px 0px 0px;
+        margin: 0px;
+    }
+    .appliance_div_class {
+        display: inline-flex;
+        width: 100%;
+        justify-content: space-between;
+        padding: 0px 10px;
+    }
+    .appliance_header_div {
+        width: auto;
+    }
+
+    /* image right arrows and left arrows */
+    #right_arrow_light_screen,#left_arrow_light_screen {
+    height: 7%;
+    width: 7%;
+    background-color: white;
+    }
+}

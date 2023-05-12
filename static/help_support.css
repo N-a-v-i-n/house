@@ -1,0 +1,30 @@
+
+#form-main-div{
+    /* border: 1px solid red; */
+    width: 70%;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.form-for-issues{
+    padding: 10px;
+    display: grid;
+    border-radius: 10px;
+}
+
+.response_tag{
+    height: 25%;
+    width: 41%;
+    text-align: center;
+    border-radius: 10px;
+    position: absolute;
+    background-color: aquamarine;
+    right: 30%;
+    top: -150%;
+    padding: 15% 0%;
+}
+
+.response_tag.popup{
+    right: 30%;
+    top: 45%;
+}

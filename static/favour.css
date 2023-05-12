@@ -1,0 +1,41 @@
+
+#inner_div1{
+    border: 0.5px solid grey;
+    height: 27%;
+    width: 50%;
+    background-color: white;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    display: flex;
+}
+#inner_div1_img{
+    border: 0.5px solid black;
+    height: 100%;
+    width: 200px;
+    background-color: lightgray;
+    border-radius: 5px;
+
+}
+#inner_div1_h3{
+    /* border: 2px solid green; */
+    width: 100%;
+    margin-left: 32%;
+    margin-top: 30px;
+
+}
+#inner_div1_h6{
+    /* border: 2px solid green; */
+    width: 100%;
+    margin-left: 42%;
+    margin-top: 2%;
+}
+#inner_div2_h6{
+    /* border: 2px solid green; */
+    width: 100%;
+    margin-left: 42%;
+    margin-top: 2%;
+}
+#favour_main_div{
+    margin: 13px;
+}
+
